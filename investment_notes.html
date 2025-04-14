@@ -289,6 +289,11 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             z-index: 1001;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .theme-toggle:hover {
@@ -516,28 +521,22 @@
             .theme-toggle {
                 top: 10px;
                 right: 10px;
-                padding: 8px 12px;
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                width: 35px;
+                height: 35px;
+                padding: 8px;
             }
 
             .print-button {
                 top: 10px;
-                right: 60px;
-                padding: 8px 12px;
-                width: 40px;
-                height: 40px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                right: 55px;
+                width: 35px;
+                height: 35px;
+                padding: 8px;
             }
 
             .note-container {
                 bottom: 15px;
-                right: 15px;
+                left: 15px;
                 width: 45px;
                 height: 45px;
             }
@@ -548,7 +547,7 @@
 
             .note-content {
                 bottom: 70px;
-                right: 15px;
+                left: 15px;
                 width: calc(100vw - 30px);
                 max-width: 300px;
             }
@@ -558,7 +557,7 @@
         .note-container {
             position: fixed;
             bottom: 20px;
-            right: 20px;
+            left: 20px;
             z-index: 1000;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 50%;
@@ -592,7 +591,7 @@
         .note-content {
             position: fixed;
             bottom: 80px;
-            right: 20px;
+            left: 20px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 20px;
@@ -710,9 +709,12 @@
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            z-index: 1000;
+            z-index: 1002;
             border: none;
             outline: none;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
         }
 
         .fab:hover {
@@ -724,6 +726,7 @@
         .fab i {
             font-size: 1.2em;
             transition: transform 0.3s ease;
+            pointer-events: none;
         }
 
         .fab:hover i {
@@ -738,6 +741,16 @@
 
         body.dark-mode .fab:hover {
             background: #3498db;
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 768px) {
+            .fab {
+                bottom: 15px;
+                right: 15px;
+                width: 45px;
+                height: 45px;
+            }
         }
 
         /* Improved Table of Contents */
@@ -762,7 +775,7 @@
         .print-button {
             position: fixed;
             top: 20px;
-            right: 60px;
+            right: 70px;
             background: #3498db;
             color: white;
             border: none;
@@ -772,6 +785,11 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             z-index: 1001;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .print-button:hover {
@@ -808,126 +826,94 @@
             background-color: rgba(255, 255, 0, 0.3);
         }
 
-        /* Create Note Styles */
-        .create-note-container {
+        /* Quick Navigation */
+        .quick-nav {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            top: 50%;
+            right: 20px; /* Adjust as needed */
+            transform: translateY(-50%);
             display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-
-        .create-note-icon {
-            color: #3498db;
-            font-size: 1.5em;
-            transition: all 0.3s ease;
-        }
-
-        .create-note-container:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        }
-
-        .create-note-container:hover .create-note-icon {
-            transform: scale(1.1);
-        }
-
-        .create-note-content {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 20px;
-            width: 300px;
-            max-height: 400px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(0,0,0,0.1);
-            display: none;
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-
-        .create-note-content textarea {
-            width: 100%;
-            height: 300px;
-            border: none;
-            outline: none;
-            resize: none;
-            background: transparent;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9em;
-            color: #333;
+            flex-direction: column;
+            gap: 10px; /* Spacing between numbers */
+            z-index: 999; /* Below other fixed icons like theme/print/search */
+            background: rgba(255, 255, 255, 0.8);
             padding: 10px;
-            margin-bottom: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
         }
 
-        .create-note-content button {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9em;
-        }
-
-        .create-note-content button:hover {
-            background: #2980b9;
-            transform: translateY(-2px);
-        }
-
-        /* Dark mode styles for create note */
-        .dark-mode .create-note-container {
-            background: rgba(30, 30, 30, 0.95);
-            border-color: rgba(255,255,255,0.1);
-        }
-
-        .dark-mode .create-note-icon {
+        .quick-nav a {
             color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 8px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 20px;
         }
 
-        .dark-mode .create-note-content {
-            background: rgba(30, 30, 30, 0.95);
-            border-color: rgba(255,255,255,0.1);
+        .quick-nav a:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: #2980b9;
         }
 
-        .dark-mode .create-note-content textarea {
-            color: #fff;
+        .quick-nav a.active {
+            background-color: #3498db;
+            color: white;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
         }
 
-        /* Mobile responsive styles for create note */
-        @media (max-width: 768px) {
-            .create-note-container {
+        /* Dark mode styles for Quick Nav */
+        body.dark-mode .quick-nav {
+            background: rgba(30, 30, 30, 0.8);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .quick-nav a {
+            color: #5dade2;
+        }
+
+        body.dark-mode .quick-nav a:hover {
+            background-color: rgba(93, 173, 226, 0.1);
+            color: #aed6f1;
+        }
+
+        body.dark-mode .quick-nav a.active {
+            background-color: #5dade2;
+            color: #1e1e1e;
+            box-shadow: 0 0 5px rgba(93, 173, 226, 0.5);
+        }
+
+        /* Mobile responsive styles */
+        @media (max-width: 992px) { 
+            .quick-nav {
+                /* Keep visible but make smaller */
+                right: 10px;
+                padding: 8px;
+                gap: 5px;
+            }
+            .quick-nav a {
+                padding: 3px 5px;
+                font-size: 0.8em; /* Smaller font */
+                min-width: 15px;
+            }
+        }
+
+        @media (max-width: 768px) { /* Adjustments for smaller screens */
+            /* ... existing styles for other elements ... */
+
+             .quick-nav {
+                 /* Hide on very small screens */
+                 display: none; 
+             }
+
+            .fab {
                 bottom: 15px;
                 right: 15px;
                 width: 45px;
                 height: 45px;
-            }
-
-            .create-note-icon {
-                font-size: 1.3em;
-            }
-
-            .create-note-content {
-                bottom: 70px;
-                right: 15px;
-                width: calc(100vw - 30px);
-                max-width: 300px;
             }
         }
     </style>
@@ -970,453 +956,457 @@
         </ul>
     </div>
 
-    <section id="q1">
-        <h2>Q1: What is Investment? Explain the Elements of Investment</h2>
-        
-        <div class="detailed-content">
-            <h3>What is Investment?</h3>
-            <p>Investment refers to the allocation of money, time, or resources into assets, projects, or ventures with the expectation of generating future income or profit. In economic terms, investment typically means the purchase of goods that are not consumed today but are used to create future wealth, such as capital goods or financial instruments.</p>
-            <p>In simple terms, investment means putting money to work with the aim of earning returns over time.</p>
-        </div>
+    <div class="quick-nav"></div>
 
-        <h3>Elements of Investment</h3>
-        <div class="characteristics">
-            <div class="characteristic-item">
-                <strong>1. Return</strong>
-                <ul>
-                    <li>The primary goal of investment is to earn a return (profit or income)</li>
-                    <li>Returns can be in the form of interest, dividends, capital gains, or rental income</li>
-                </ul>
-            </div>
+    <main class="container">
+        <section id="q1">
+            <h2>Q1: What is Investment? Explain the Elements of Investment</h2>
             
-            <div class="characteristic-item">
-                <strong>2. Risk</strong>
+            <div class="detailed-content">
+                <h3>What is Investment?</h3>
+                <p>Investment refers to the allocation of money, time, or resources into assets, projects, or ventures with the expectation of generating future income or profit. In economic terms, investment typically means the purchase of goods that are not consumed today but are used to create future wealth, such as capital goods or financial instruments.</p>
+                <p>In simple terms, investment means putting money to work with the aim of earning returns over time.</p>
+            </div>
+
+            <h3>Elements of Investment</h3>
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <strong>1. Return</strong>
+                    <ul>
+                        <li>The primary goal of investment is to earn a return (profit or income)</li>
+                        <li>Returns can be in the form of interest, dividends, capital gains, or rental income</li>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>2. Risk</strong>
 <ul>
 <li>Every investment carries a certain degree of risk</li>
-                    <li>The risk is the possibility of losing the invested money or not earning the expected return</li>
+                        <li>The risk is the possibility of losing the invested money or not earning the expected return</li>
 <li>Generally, higher returns come with higher risks</li>
                 </ul>
-            </div>
-            
-            <div class="characteristic-item">
-                <strong>3. Time (Investment Horizon)</strong>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>3. Time (Investment Horizon)</strong>
 <ul>
 <li>Investment is made for a certain period—short-term or long-term</li>
-                    <li>The time period affects the choice of investment and potential return</li>
-                </ul>
-            </div>
-            
-            <div class="characteristic-item">
-                <strong>4. Liquidity</strong>
-                <ul>
-                    <li>Liquidity refers to how quickly and easily an investment can be converted into cash without significant loss of value</li>
-                    <li>Stocks and bonds are more liquid than real estate or long-term deposits</li>
-                </ul>
-            </div>
-            
-            <div class="characteristic-item">
-                <strong>5. Safety</strong>
-                <ul>
-                    <li>Safety is the assurance that the principal amount will be protected</li>
+                        <li>The time period affects the choice of investment and potential return</li>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>4. Liquidity</strong>
+                    <ul>
+                        <li>Liquidity refers to how quickly and easily an investment can be converted into cash without significant loss of value</li>
+                        <li>Stocks and bonds are more liquid than real estate or long-term deposits</li>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>5. Safety</strong>
+                    <ul>
+                        <li>Safety is the assurance that the principal amount will be protected</li>
 <li>Government bonds are considered safer than equities</li>
-                </ul>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>6. Tax Benefits</strong>
+                    <ul>
+                        <li>Some investments offer tax advantages, such as deductions or exemptions</li>
+                        <li>For example, investment in certain savings schemes may reduce taxable income</li>
+                    </ul>
+                </div>
             </div>
-            
-            <div class="characteristic-item">
-                <strong>6. Tax Benefits</strong>
-                <ul>
-                    <li>Some investments offer tax advantages, such as deductions or exemptions</li>
-                    <li>For example, investment in certain savings schemes may reduce taxable income</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="q2">
-        <h2>Q2: What are the Objectives of Investment?</h2>
-        <div class="detailed-content">
-            <p>Investment is made with various financial and personal goals in mind. The primary objectives of investment are as follows:</p>
-        </div>
-        <div class="characteristics">
-            <div class="characteristic-item">
-                <strong>1. Earning Return</strong>
-                <ul>
-                    <li>The main objective of any investment is to earn income or profit in the form of interest, dividends, or capital appreciation</li>
-                    <li>This helps in growing wealth over time</li>
-                </ul>
+        <section id="q2">
+            <h2>Q2: What are the Objectives of Investment?</h2>
+            <div class="detailed-content">
+                <p>Investment is made with various financial and personal goals in mind. The primary objectives of investment are as follows:</p>
             </div>
-            
-            <div class="characteristic-item">
-                <strong>2. Capital Appreciation</strong>
-                <ul>
-                    <li>Investors aim to increase the value of their invested capital over the years</li>
-                    <li>For example, buying land or shares with the expectation that their price will rise in the future</li>
-                </ul>
-            </div>
-            
-            <div class="characteristic-item">
-                <strong>3. Safety of Principal</strong>
-                <ul>
-                    <li>Many investors prioritize the protection of their original investment amount (principal)</li>
-                    <li>They choose low-risk options like government securities or fixed deposits to ensure capital safety</li>
-                </ul>
-            </div>
-            
-            <div class="characteristic-item">
-                <strong>4. Liquidity</strong>
-                <ul>
-                    <li>Investors prefer investments that can be easily converted into cash when needed</li>
-                    <li>This ensures funds are available during emergencies or for other financial needs</li>
-                </ul>
-            </div>
-            
-            <div class="characteristic-item">
-                <strong>5. Tax Benefits</strong>
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <strong>1. Earning Return</strong>
+                    <ul>
+                        <li>The main objective of any investment is to earn income or profit in the form of interest, dividends, or capital appreciation</li>
+                        <li>This helps in growing wealth over time</li>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>2. Capital Appreciation</strong>
+                    <ul>
+                        <li>Investors aim to increase the value of their invested capital over the years</li>
+                        <li>For example, buying land or shares with the expectation that their price will rise in the future</li>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>3. Safety of Principal</strong>
+                    <ul>
+                        <li>Many investors prioritize the protection of their original investment amount (principal)</li>
+                        <li>They choose low-risk options like government securities or fixed deposits to ensure capital safety</li>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>4. Liquidity</strong>
+                    <ul>
+                        <li>Investors prefer investments that can be easily converted into cash when needed</li>
+                        <li>This ensures funds are available during emergencies or for other financial needs</li>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>5. Tax Benefits</strong>
 <ul>
 <li>Certain investments help in reducing tax liability</li>
-                    <li>For example, investment in Public Provident Fund (PPF) or National Savings Certificate (NSC) offers tax deductions under Section 80C of the Income Tax Act</li>
-                </ul>
-            </div>
-            
-            <div class="characteristic-item">
-                <strong>6. Meeting Financial Goals</strong>
-                <ul>
-                    <li>Investments are made to fulfill specific goals, such as:</li>
-                    <li>Children's education</li>
+                        <li>For example, investment in Public Provident Fund (PPF) or National Savings Certificate (NSC) offers tax deductions under Section 80C of the Income Tax Act</li>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>6. Meeting Financial Goals</strong>
+                    <ul>
+                        <li>Investments are made to fulfill specific goals, such as:</li>
+                        <li>Children's education</li>
 <li>Marriage expenses</li>
 <li>Buying a house or vehicle</li>
 <li>Retirement planning</li>
-                </ul>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>7. Hedge Against Inflation</strong>
+                    <ul>
+                        <li>Investment helps in maintaining the purchasing power of money</li>
+                        <li>Returns from investments can beat inflation, preserving the real value of wealth</li>
+                    </ul>
+                </div>
             </div>
+        </section>
+
+        <section id="q3">
+            <h2>Q3: Types of Investment or Revenue</h2>
+            <div class="detailed-content">
+                <p>Investments can be made in various forms, depending on the investor's goals, risk appetite, and time horizon. Below are four common types of investment or revenue sources with definitions:</p>
+            </div>
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <strong>1. Fixed-Income Investments</strong>
+                    <ul>
+                        <li>Definition: These are investments that provide regular and fixed returns over a period of time, such as interest payments</li>
+                        <li>Examples: Bonds, Fixed Deposits (FDs), Treasury Bills</li>
+                        <li>Revenue Type: Interest income (earned at a fixed rate over time)</li>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>2. Equity Investments</strong>
+                    <ul>
+                        <li>Definition: Investing in shares or stocks of companies, where the investor becomes a part-owner and earns returns based on company performance</li>
+                        <li>Examples: Shares of listed companies, Mutual funds (equity-based)</li>
+                        <li>Revenue Type: Dividends (profit shared with shareholders) and Capital gains (profit from selling shares at a higher price)</li>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>3. Real Estate Investments</strong>
+                    <ul>
+                        <li>Definition: Investment in physical property such as land, buildings, or commercial space for the purpose of rental income or value appreciation</li>
+                        <li>Examples: Residential or commercial property, Plots or agricultural land</li>
+                        <li>Revenue Type: Rental income and Capital appreciation (property value increases over time)</li>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>4. Business or Entrepreneurial Investments</strong>
+                    <ul>
+                        <li>Definition: Investment made in one's own business or startup with the expectation of earning profits from its operations</li>
+                        <li>Examples: Opening a retail store, manufacturing unit, or service-based business</li>
+                        <li>Revenue Type: Business profits and Share in revenue or sales</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="q4">
+            <h2>Q4: Characteristics of Bonds with Its Types</h2>
             
-            <div class="characteristic-item">
-                <strong>7. Hedge Against Inflation</strong>
-                <ul>
-                    <li>Investment helps in maintaining the purchasing power of money</li>
-                    <li>Returns from investments can beat inflation, preserving the real value of wealth</li>
-                </ul>
+            <div class="detailed-content">
+                <h3>What is a Bond?</h3>
+                <p>A bond is a fixed-income security that represents a loan made by an investor to a borrower, typically a government or corporation. In return, the issuer pays regular interest and returns the principal amount on maturity.</p>
             </div>
-        </div>
-    </section>
 
-    <section id="q3">
-        <h2>Q3: Types of Investment or Revenue</h2>
-        <div class="detailed-content">
-            <p>Investments can be made in various forms, depending on the investor's goals, risk appetite, and time horizon. Below are four common types of investment or revenue sources with definitions:</p>
-        </div>
-        <div class="characteristics">
-            <div class="characteristic-item">
-                <strong>1. Fixed-Income Investments</strong>
-                <ul>
-                    <li>Definition: These are investments that provide regular and fixed returns over a period of time, such as interest payments</li>
-                    <li>Examples: Bonds, Fixed Deposits (FDs), Treasury Bills</li>
-                    <li>Revenue Type: Interest income (earned at a fixed rate over time)</li>
-                </ul>
+            <h3>Characteristics of Bonds (6 Points)</h3>
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <ol>
+                        <li><strong>Fixed Interest (Coupon Rate):</strong> Bonds offer a pre-determined interest rate, known as the coupon, paid at regular intervals (usually annually or semi-annually)</li>
+                        <li><strong>Maturity Period:</strong> Bonds are issued for a specific duration after which the principal is repaid to the bondholder</li>
+                        <li><strong>Face Value (Par Value):</strong> The bond has a fixed face value, usually ₹100 or ₹1,000, which is the amount repaid at maturity</li>
+                        <li><strong>Tradability:</strong> Most bonds are tradable in financial markets, meaning investors can buy or sell them before maturity</li>
+                        <li><strong>Credit Rating:</strong> Bonds carry credit ratings by agencies like CRISIL or ICRA, indicating the risk level associated with the issuer</li>
+                        <li><strong>Priority in Repayment:</strong> In case of liquidation, bondholders are paid before shareholders, making bonds a safer investment compared to stocks</li>
+</ol>
+                </div>
             </div>
+
+            <h3>Types of Bonds</h3>
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <ol>
+                        <li><strong>Government Bonds:</strong> Issued by the central or state government. Considered very safe</li>
+                        <li><strong>Corporate Bonds:</strong> Issued by private or public companies to raise capital. Higher risk than government bonds but may offer better returns</li>
+                        <li><strong>Convertible Bonds:</strong> These bonds can be converted into equity shares of the issuing company after a certain period</li>
+                        <li><strong>Zero-Coupon Bonds:</strong> These do not pay periodic interest. Instead, they are issued at a discount and redeemed at face value on maturity</li>
+                        <li><strong>Municipal Bonds:</strong> Issued by local government bodies or municipalities to finance public projects</li>
+</ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="q5">
+            <h2>Q5: What are Debentures and State Its Types</h2>
             
-            <div class="characteristic-item">
-                <strong>2. Equity Investments</strong>
-                <ul>
-                    <li>Definition: Investing in shares or stocks of companies, where the investor becomes a part-owner and earns returns based on company performance</li>
-                    <li>Examples: Shares of listed companies, Mutual funds (equity-based)</li>
-                    <li>Revenue Type: Dividends (profit shared with shareholders) and Capital gains (profit from selling shares at a higher price)</li>
-                </ul>
+            <div class="detailed-content">
+                <h3>What is a Debenture?</h3>
+                <p>A debenture is a type of long-term debt instrument issued by companies to borrow money from the public. It is not backed by any physical asset or collateral but is supported only by the general creditworthiness and reputation of the issuer.</p>
+                <p>In simple terms, a debenture is a loan certificate issued by a company that promises to pay interest and return the principal amount after a fixed period.</p>
             </div>
+
+            <h3>Features of Debentures:</h3>
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <ul>
+                        <li>Fixed interest rate (coupon)</li>
+                        <li>Redeemable after a specific time</li>
+                        <li>No ownership rights (unlike shares)</li>
+                        <li>Can be secured or unsecured</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Types of Debentures:</h3>
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <ol>
+                        <li><strong>Secured Debentures:</strong> Backed by the company's assets as collateral. If the company fails to pay, assets can be sold to repay investors</li>
+                        <li><strong>Unsecured Debentures (Naked Debentures):</strong> Not backed by any security. These rely entirely on the issuer's creditworthiness</li>
+                        <li><strong>Convertible Debentures:</strong> Can be converted into equity shares after a certain period, as per the terms set at the time of issue</li>
+                        <li><strong>Non-Convertible Debentures (NCDs):</strong> Cannot be converted into shares. Investors get only interest and principal repayment</li>
+                        <li><strong>Redeemable Debentures:</strong> Repaid by the company on a pre-determined date or after a certain time period</li>
+                        <li><strong>Irredeemable Debentures (Perpetual):</strong> Not repayable during the company's lifetime. Only interest is paid regularly; principal may be repaid during liquidation</li>
+</ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="q6">
+            <h2>Q6: Define Commodities & Its Types. Also, Explain Advantages & Risks</h2>
             
-            <div class="characteristic-item">
-                <strong>3. Real Estate Investments</strong>
-                <ul>
-                    <li>Definition: Investment in physical property such as land, buildings, or commercial space for the purpose of rental income or value appreciation</li>
-                    <li>Examples: Residential or commercial property, Plots or agricultural land</li>
-                    <li>Revenue Type: Rental income and Capital appreciation (property value increases over time)</li>
-                </ul>
+            <div class="detailed-content">
+                <h3>Definition of Commodities:</h3>
+                <p>Commodities are raw materials or primary goods that are traded in bulk and are interchangeable with other goods of the same type. These are essential goods used in commerce and industry, and their prices are determined by global supply and demand.</p>
+                <p>Examples: Gold, silver, crude oil, wheat, cotton, etc.</p>
             </div>
+
+            <h3>Types of Commodities:</h3>
+            <div class="detailed-content">
+                <p>Commodities are broadly classified into two categories:</p>
+            </div>
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <strong>1. Hard Commodities</strong>
+                    <ul>
+                        <li>Natural resources that are mined or extracted</li>
+                        <li>Examples:</li>
+                        <li>Crude Oil</li>
+                        <li>Natural Gas</li>
+                        <li>Gold</li>
+                        <li>Silver</li>
+                        <li>Copper</li>
+                    </ul>
+                </div>
+                
+                <div class="characteristic-item">
+                    <strong>2. Soft Commodities</strong>
+                    <ul>
+                        <li>Agricultural or livestock products that are grown or raised</li>
+                        <li>Examples:</li>
+                        <li>Wheat</li>
+                        <li>Rice</li>
+                        <li>Cotton</li>
+                        <li>Coffee</li>
+                        <li>Sugar</li>
+                        <li>Cattle</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Advantages of Investing in Commodities:</h3>
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <ol>
+                        <li><strong>Hedge Against Inflation:</strong> Commodity prices often rise with inflation, helping to preserve the value of money</li>
+                        <li><strong>Diversification:</strong> Adding commodities to a portfolio helps reduce overall risk, as their prices may move differently than stocks or bonds</li>
+                        <li><strong>High Returns Potential:</strong> In times of economic uncertainty or supply shortage, commodity prices can rise significantly, leading to good profits</li>
+                        <li><strong>Global Demand:</strong> Commodities are always in demand due to industrial and economic needs, offering long-term investment opportunities</li>
+</ol>
+                </div>
+            </div>
+
+            <h3>Risks of Investing in Commodities:</h3>
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <ol>
+                        <li><strong>Price Volatility:</strong> Commodity prices are highly sensitive to global events, weather conditions, and political changes, leading to unstable returns</li>
+                        <li><strong>Market Speculation:</strong> Heavily traded commodities may be influenced by speculative activities, causing unexpected price swings</li>
+                        <li><strong>Storage and Quality Issues:</strong> Physical commodities like grains or metals require proper storage and can degrade over time</li>
+                        <li><strong>Geopolitical Risk:</strong> Events like war, trade restrictions, or export bans can disrupt supply chains and affect commodity prices</li>
+</ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="q7">
+            <h2>Q7: Importance of Investment</h2>
+            <div class="detailed-content">
+                <p>Investment plays a vital role in personal financial planning, economic development, and wealth creation. It is not just about saving money but growing it over time to meet future goals and secure financial stability.</p>
+            </div>
+            <div class="characteristics">
+                <div class="characteristic-item">
+                    <ol>
+                        <li><strong>Wealth Creation</strong>
+                            <ul>
+                                <li>Investment helps in multiplying savings over time</li>
+                                <li>Through returns like interest, dividends, or capital gains, individuals can grow their wealth</li>
+                            </ul>
+                        </li>
+                        <li><strong>Achieving Financial Goals</strong>
+                            <ul>
+                                <li>Investments are essential to fulfill short-term and long-term goals, such as:</li>
+                                <li>Buying a house or car</li>
+                                <li>Children's education</li>
+                                <li>Retirement planning</li>
+                                <li>Business expansion</li>
+                            </ul>
+                        </li>
+                        <li><strong>Source of Regular Income</strong>
+                            <ul>
+                                <li>Certain investments (like bonds, rental properties, fixed deposits) offer regular returns, providing an additional income stream</li>
+                            </ul>
+                        </li>
+                        <li><strong>Fighting Inflation</strong>
+                            <ul>
+                                <li>Inflation reduces the value of money</li>
+                                <li>Investment helps in beating inflation by earning returns that outpace rising prices</li>
+                            </ul>
+                        </li>
+                        <li><strong>Tax Savings</strong>
+                            <ul>
+                                <li>Many investment options offer tax benefits under sections like 80C of the Income Tax Act</li>
+                                <li>This helps in reducing the overall tax burden</li>
+                            </ul>
+                        </li>
+                        <li><strong>Financial Security & Independence</strong>
+                            <ul>
+                                <li>Investment provides a safety net for emergencies or during retirement</li>
+                                <li>It ensures financial independence without relying on others</li>
+                            </ul>
+                        </li>
+                        <li><strong>Economic Growth</strong>
+                            <ul>
+                                <li>When people invest in businesses, stocks, or government bonds, it boosts economic development by providing capital for industries and infrastructure</li>
+                            </ul>
+                        </li>
+</ol>
+                </div>
+            </div>
+        </section>
+
+        <section id="q8">
+            <h2>Q8: Explain Investment & Channels of Investment</h2>
             
-            <div class="characteristic-item">
-                <strong>4. Business or Entrepreneurial Investments</strong>
+            <div class="detailed-content">
+                <h3>What is Investment?</h3>
+                <p>Investment refers to the commitment of funds or resources into assets or ventures with the aim of earning returns or profit over time. It involves postponing current consumption to gain financial benefits in the future.</p>
+            </div>
+
+            <div class="detailed-content">
+                <h3>Channels of Investment:</h3>
+                <p>Channels of investment are the various options or platforms through which individuals or institutions can invest their money. These channels vary in terms of return, risk, duration, and liquidity.</p>
+            </div>
+
+            <div class="investment-channel">
+                <h3>Bank Deposits</h3>
                 <ul>
-                    <li>Definition: Investment made in one's own business or startup with the expectation of earning profits from its operations</li>
-                    <li>Examples: Opening a retail store, manufacturing unit, or service-based business</li>
-                    <li>Revenue Type: Business profits and Share in revenue or sales</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="q4">
-        <h2>Q4: Characteristics of Bonds with Its Types</h2>
-        
-        <div class="detailed-content">
-            <h3>What is a Bond?</h3>
-            <p>A bond is a fixed-income security that represents a loan made by an investor to a borrower, typically a government or corporation. In return, the issuer pays regular interest and returns the principal amount on maturity.</p>
-        </div>
-
-        <h3>Characteristics of Bonds (6 Points)</h3>
-        <div class="characteristics">
-            <div class="characteristic-item">
-                <ol>
-                    <li><strong>Fixed Interest (Coupon Rate):</strong> Bonds offer a pre-determined interest rate, known as the coupon, paid at regular intervals (usually annually or semi-annually)</li>
-                    <li><strong>Maturity Period:</strong> Bonds are issued for a specific duration after which the principal is repaid to the bondholder</li>
-                    <li><strong>Face Value (Par Value):</strong> The bond has a fixed face value, usually ₹100 or ₹1,000, which is the amount repaid at maturity</li>
-                    <li><strong>Tradability:</strong> Most bonds are tradable in financial markets, meaning investors can buy or sell them before maturity</li>
-                    <li><strong>Credit Rating:</strong> Bonds carry credit ratings by agencies like CRISIL or ICRA, indicating the risk level associated with the issuer</li>
-                    <li><strong>Priority in Repayment:</strong> In case of liquidation, bondholders are paid before shareholders, making bonds a safer investment compared to stocks</li>
-</ol>
-            </div>
-        </div>
-
-        <h3>Types of Bonds</h3>
-        <div class="characteristics">
-            <div class="characteristic-item">
-                <ol>
-                    <li><strong>Government Bonds:</strong> Issued by the central or state government. Considered very safe</li>
-                    <li><strong>Corporate Bonds:</strong> Issued by private or public companies to raise capital. Higher risk than government bonds but may offer better returns</li>
-                    <li><strong>Convertible Bonds:</strong> These bonds can be converted into equity shares of the issuing company after a certain period</li>
-                    <li><strong>Zero-Coupon Bonds:</strong> These do not pay periodic interest. Instead, they are issued at a discount and redeemed at face value on maturity</li>
-                    <li><strong>Municipal Bonds:</strong> Issued by local government bodies or municipalities to finance public projects</li>
-</ol>
-            </div>
-        </div>
-    </section>
-
-    <section id="q5">
-        <h2>Q5: What are Debentures and State Its Types</h2>
-        
-        <div class="detailed-content">
-            <h3>What is a Debenture?</h3>
-            <p>A debenture is a type of long-term debt instrument issued by companies to borrow money from the public. It is not backed by any physical asset or collateral but is supported only by the general creditworthiness and reputation of the issuer.</p>
-            <p>In simple terms, a debenture is a loan certificate issued by a company that promises to pay interest and return the principal amount after a fixed period.</p>
-        </div>
-
-        <h3>Features of Debentures:</h3>
-        <div class="characteristics">
-            <div class="characteristic-item">
-                <ul>
-                    <li>Fixed interest rate (coupon)</li>
-                    <li>Redeemable after a specific time</li>
-                    <li>No ownership rights (unlike shares)</li>
-                    <li>Can be secured or unsecured</li>
-                </ul>
-            </div>
-        </div>
-
-        <h3>Types of Debentures:</h3>
-        <div class="characteristics">
-            <div class="characteristic-item">
-                <ol>
-                    <li><strong>Secured Debentures:</strong> Backed by the company's assets as collateral. If the company fails to pay, assets can be sold to repay investors</li>
-                    <li><strong>Unsecured Debentures (Naked Debentures):</strong> Not backed by any security. These rely entirely on the issuer's creditworthiness</li>
-                    <li><strong>Convertible Debentures:</strong> Can be converted into equity shares after a certain period, as per the terms set at the time of issue</li>
-                    <li><strong>Non-Convertible Debentures (NCDs):</strong> Cannot be converted into shares. Investors get only interest and principal repayment</li>
-                    <li><strong>Redeemable Debentures:</strong> Repaid by the company on a pre-determined date or after a certain time period</li>
-                    <li><strong>Irredeemable Debentures (Perpetual):</strong> Not repayable during the company's lifetime. Only interest is paid regularly; principal may be repaid during liquidation</li>
-</ol>
-            </div>
-        </div>
-    </section>
-
-    <section id="q6">
-        <h2>Q6: Define Commodities & Its Types. Also, Explain Advantages & Risks</h2>
-        
-        <div class="detailed-content">
-            <h3>Definition of Commodities:</h3>
-            <p>Commodities are raw materials or primary goods that are traded in bulk and are interchangeable with other goods of the same type. These are essential goods used in commerce and industry, and their prices are determined by global supply and demand.</p>
-            <p>Examples: Gold, silver, crude oil, wheat, cotton, etc.</p>
-        </div>
-
-        <h3>Types of Commodities:</h3>
-        <div class="detailed-content">
-            <p>Commodities are broadly classified into two categories:</p>
-        </div>
-        <div class="characteristics">
-            <div class="characteristic-item">
-                <strong>1. Hard Commodities</strong>
-                <ul>
-                    <li>Natural resources that are mined or extracted</li>
-                    <li>Examples:</li>
-                    <li>Crude Oil</li>
-                    <li>Natural Gas</li>
-                    <li>Gold</li>
-                    <li>Silver</li>
-                    <li>Copper</li>
-                </ul>
-            </div>
-            
-            <div class="characteristic-item">
-                <strong>2. Soft Commodities</strong>
-                <ul>
-                    <li>Agricultural or livestock products that are grown or raised</li>
-                    <li>Examples:</li>
-                    <li>Wheat</li>
-                    <li>Rice</li>
-                    <li>Cotton</li>
-                    <li>Coffee</li>
-                    <li>Sugar</li>
-                    <li>Cattle</li>
-                </ul>
-            </div>
-        </div>
-
-        <h3>Advantages of Investing in Commodities:</h3>
-        <div class="characteristics">
-            <div class="characteristic-item">
-                <ol>
-                    <li><strong>Hedge Against Inflation:</strong> Commodity prices often rise with inflation, helping to preserve the value of money</li>
-                    <li><strong>Diversification:</strong> Adding commodities to a portfolio helps reduce overall risk, as their prices may move differently than stocks or bonds</li>
-                    <li><strong>High Returns Potential:</strong> In times of economic uncertainty or supply shortage, commodity prices can rise significantly, leading to good profits</li>
-                    <li><strong>Global Demand:</strong> Commodities are always in demand due to industrial and economic needs, offering long-term investment opportunities</li>
-</ol>
-            </div>
-        </div>
-
-        <h3>Risks of Investing in Commodities:</h3>
-        <div class="characteristics">
-            <div class="characteristic-item">
-                <ol>
-                    <li><strong>Price Volatility:</strong> Commodity prices are highly sensitive to global events, weather conditions, and political changes, leading to unstable returns</li>
-                    <li><strong>Market Speculation:</strong> Heavily traded commodities may be influenced by speculative activities, causing unexpected price swings</li>
-                    <li><strong>Storage and Quality Issues:</strong> Physical commodities like grains or metals require proper storage and can degrade over time</li>
-                    <li><strong>Geopolitical Risk:</strong> Events like war, trade restrictions, or export bans can disrupt supply chains and affect commodity prices</li>
-</ol>
-            </div>
-        </div>
-    </section>
-
-    <section id="q7">
-        <h2>Q7: Importance of Investment</h2>
-        <div class="detailed-content">
-            <p>Investment plays a vital role in personal financial planning, economic development, and wealth creation. It is not just about saving money but growing it over time to meet future goals and secure financial stability.</p>
-        </div>
-        <div class="characteristics">
-            <div class="characteristic-item">
-                <ol>
-                    <li><strong>Wealth Creation</strong>
-                        <ul>
-                            <li>Investment helps in multiplying savings over time</li>
-                            <li>Through returns like interest, dividends, or capital gains, individuals can grow their wealth</li>
-                        </ul>
-                    </li>
-                    <li><strong>Achieving Financial Goals</strong>
-                        <ul>
-                            <li>Investments are essential to fulfill short-term and long-term goals, such as:</li>
-                            <li>Buying a house or car</li>
-                            <li>Children's education</li>
-                            <li>Retirement planning</li>
-                            <li>Business expansion</li>
-                        </ul>
-                    </li>
-                    <li><strong>Source of Regular Income</strong>
-                        <ul>
-                            <li>Certain investments (like bonds, rental properties, fixed deposits) offer regular returns, providing an additional income stream</li>
-                        </ul>
-                    </li>
-                    <li><strong>Fighting Inflation</strong>
-                        <ul>
-                            <li>Inflation reduces the value of money</li>
-                            <li>Investment helps in beating inflation by earning returns that outpace rising prices</li>
-                        </ul>
-                    </li>
-                    <li><strong>Tax Savings</strong>
-                        <ul>
-                            <li>Many investment options offer tax benefits under sections like 80C of the Income Tax Act</li>
-                            <li>This helps in reducing the overall tax burden</li>
-                        </ul>
-                    </li>
-                    <li><strong>Financial Security & Independence</strong>
-                        <ul>
-                            <li>Investment provides a safety net for emergencies or during retirement</li>
-                            <li>It ensures financial independence without relying on others</li>
-                        </ul>
-                    </li>
-                    <li><strong>Economic Growth</strong>
-                        <ul>
-                            <li>When people invest in businesses, stocks, or government bonds, it boosts economic development by providing capital for industries and infrastructure</li>
-                        </ul>
-                    </li>
-</ol>
-            </div>
-        </div>
-    </section>
-
-    <section id="q8">
-        <h2>Q8: Explain Investment & Channels of Investment</h2>
-        
-        <div class="detailed-content">
-            <h3>What is Investment?</h3>
-            <p>Investment refers to the commitment of funds or resources into assets or ventures with the aim of earning returns or profit over time. It involves postponing current consumption to gain financial benefits in the future.</p>
-        </div>
-
-        <div class="detailed-content">
-            <h3>Channels of Investment:</h3>
-            <p>Channels of investment are the various options or platforms through which individuals or institutions can invest their money. These channels vary in terms of return, risk, duration, and liquidity.</p>
-        </div>
-
-        <div class="investment-channel">
-            <h3>Bank Deposits</h3>
-            <ul>
-                <li>Includes Fixed Deposits (FDs), Recurring Deposits (RDs), and Savings Accounts</li>
+                    <li>Includes Fixed Deposits (FDs), Recurring Deposits (RDs), and Savings Accounts</li>
 <li>Duration: 1M to 10Y</li>
 <li>Return: Low to Moderate</li>
 <li>Risk: Very Low</li>
 <li>Liquidity: Moderate to High</li>
 </ul>
-        </div>
-        
-        <div class="investment-channel">
-            <h3>Stock Market</h3>
+            </div>
+            
+            <div class="investment-channel">
+                <h3>Stock Market</h3>
 <ul>
-                <li>Investment in equity shares of publicly listed companies</li>
+                    <li>Investment in equity shares of publicly listed companies</li>
 <li>Duration: 1Y to Long-Term</li>
-                <li>Return: High (but market-dependent)</li>
+                    <li>Return: High (but market-dependent)</li>
 <li>Risk: High</li>
-                <li>Liquidity: High (can be sold anytime during market hours)</li>
+                    <li>Liquidity: High (can be sold anytime during market hours)</li>
 </ul>
-        </div>
-        
-        <div class="investment-channel">
-            <h3>Mutual Funds</h3>
+            </div>
+            
+            <div class="investment-channel">
+                <h3>Mutual Funds</h3>
 <ul>
-                <li>Pooled investments managed by professionals in equities, debt, or hybrid funds</li>
+                    <li>Pooled investments managed by professionals in equities, debt, or hybrid funds</li>
 <li>Duration: 6M to Long-Term</li>
 <li>Return: Moderate to High</li>
-                <li>Risk: Varies (low to high depending on fund type)</li>
-                <li>Liquidity: High (open-ended funds can be redeemed anytime)</li>
+                    <li>Risk: Varies (low to high depending on fund type)</li>
+                    <li>Liquidity: High (open-ended funds can be redeemed anytime)</li>
 </ul>
-        </div>
-        
-        <div class="investment-channel">
-            <h3>Real Estate</h3>
+            </div>
+            
+            <div class="investment-channel">
+                <h3>Real Estate</h3>
 <ul>
-                <li>Investment in land, residential, or commercial properties</li>
+                    <li>Investment in land, residential, or commercial properties</li>
 <li>Duration: 3Y to Long-Term</li>
-                <li>Return: Moderate to High (appreciation + rent)</li>
+                    <li>Return: Moderate to High (appreciation + rent)</li>
 <li>Risk: Moderate</li>
-                <li>Liquidity: Low (time-consuming to sell)</li>
+                    <li>Liquidity: Low (time-consuming to sell)</li>
 </ul>
-        </div>
-        
-        <div class="investment-channel">
-            <h3>Gold & Precious Metals</h3>
+            </div>
+            
+            <div class="investment-channel">
+                <h3>Gold & Precious Metals</h3>
 <ul>
-                <li>Physical gold, gold ETFs, or sovereign gold bonds</li>
+                    <li>Physical gold, gold ETFs, or sovereign gold bonds</li>
 <li>Duration: 1Y to Long-Term</li>
-                <li>Return: Moderate (inflation hedge)</li>
+                    <li>Return: Moderate (inflation hedge)</li>
 <li>Risk: Low to Moderate</li>
-                <li>Liquidity: High (especially ETFs)</li>
+                    <li>Liquidity: High (especially ETFs)</li>
 </ul>
-        </div>
-        
-        <div class="investment-channel">
-            <h3>Government Schemes</h3>
+            </div>
+            
+            <div class="investment-channel">
+                <h3>Government Schemes</h3>
 <ul>
-                <li>Includes Public Provident Fund (PPF), National Savings Certificate (NSC), etc.</li>
+                    <li>Includes Public Provident Fund (PPF), National Savings Certificate (NSC), etc.</li>
 <li>Duration: 5Y to 15Y</li>
 <li>Return: Fixed and safe</li>
-                <li>Risk: Very Low (government-backed)</li>
-                <li>Liquidity: Low to Moderate (depending on the scheme)</li>
+                    <li>Risk: Very Low (government-backed)</li>
+                    <li>Liquidity: Low to Moderate (depending on the scheme)</li>
 </ul>
-        </div>
-    </section>
+            </div>
+        </section>
+    </main>
 
     <footer style="text-align: center; margin-top: 50px; padding: 20px; border-top: 1px solid #2c3e50;">
         <p>MHS</p>
@@ -1426,19 +1416,9 @@
         <div class="note-icon">
             <i class="fas fa-sticky-note"></i>
         </div>
-        <div class="note-content">
+        <div class="note-content" style="display: none;">
             <textarea placeholder="Take notes here..."></textarea>
             <button>Save Notes</button>
-        </div>
-    </div>
-
-    <div class="create-note-container">
-        <div class="create-note-icon">
-            <i class="fas fa-plus"></i>
-        </div>
-        <div class="create-note-content">
-            <textarea placeholder="Create a new note..."></textarea>
-            <button>Save Note</button>
         </div>
     </div>
 
@@ -1447,264 +1427,375 @@
     </div>
 
     <script>
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        const body = document.body;
-        const icon = themeToggle.querySelector('i');
-
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            icon.classList.toggle('fa-moon');
-            icon.classList.toggle('fa-sun');
-            localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
-        });
-
-        // Load saved theme preference
-        if (localStorage.getItem('darkMode') === 'true') {
-            body.classList.add('dark-mode');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
-
-        // Back to Top Button
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Performance Helper Functions --- 
+            function throttle(func, limit) {
+                let lastFunc;
+                let lastRan;
+                return function(...args) {
+                    const context = this;
+                    if (!lastRan) {
+                        func.apply(context, args);
+                        lastRan = Date.now();
+                    } else {
+                        clearTimeout(lastFunc);
+                        lastFunc = setTimeout(function() {
+                            if ((Date.now() - lastRan) >= limit) {
+                                func.apply(context, args);
+                                lastRan = Date.now();
+                            }
+                        }, limit - (Date.now() - lastRan));
+                    }
+                }
             }
-        });
 
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            function debounce(func, delay) {
+                let timeoutId;
+                return function(...args) {
+                    const context = this;
+                    clearTimeout(timeoutId);
+                    timeoutId = setTimeout(() => {
+                        func.apply(context, args);
+                    }, delay);
+                }
+            }
+            // --- End Helper Functions ---
+
+            // Theme Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const themeIcon = themeToggle.querySelector('i');
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                themeIcon.classList.toggle('fa-moon');
+                themeIcon.classList.toggle('fa-sun');
+                localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
             });
-        });
 
-        // Progress Bar
-        const progressBar = document.getElementById('progressBar');
-        window.addEventListener('scroll', () => {
-            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (window.scrollY / windowHeight) * 100;
-            progressBar.style.width = scrolled + '%';
-        });
+            // Load saved theme preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
 
-        // Smooth Scroll for Table of Contents
-        document.querySelectorAll('.toc-list a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                document.querySelector(targetId).scrollIntoView({
-                    behavior: 'smooth'
+            // Progress Bar
+            const progressBar = document.getElementById('progressBar');
+            const handleProgressBarScroll = () => {
+                const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                // Prevent division by zero if windowHeight is 0
+                const scrolled = windowHeight > 0 ? (window.scrollY / windowHeight) * 100 : 0;
+                progressBar.style.width = scrolled + '%';
+            };
+             // Throttle scroll event for Progress Bar
+            window.addEventListener('scroll', throttle(handleProgressBarScroll, 50)); 
+            // Initial check
+            handleProgressBarScroll();
+
+            // Smooth Scroll for Table of Contents
+            document.querySelectorAll('.toc-list a').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
                 });
             });
-        });
 
-        // Search Functionality
-        const searchInput = document.getElementById('searchInput');
-        const searchIcon = document.querySelector('.search-container i');
-        let originalContent = {};
-        
-        // Save original content
-        document.querySelectorAll('section').forEach(section => {
-            originalContent[section.id] = section.innerHTML;
-        });
-
-        // Add focus effect
-        searchInput.addEventListener('focus', () => {
-            searchIcon.style.transform = 'scale(1.2)';
-            searchIcon.style.color = '#2980b9';
-        });
-
-        searchInput.addEventListener('blur', () => {
-            searchIcon.style.transform = 'scale(1)';
-            searchIcon.style.color = '#3498db';
-        });
-
-        // Add clear button functionality
-        searchInput.addEventListener('input', function() {
-            if (this.value) {
-                searchIcon.classList.remove('fa-search');
-                searchIcon.classList.add('fa-times');
-                searchIcon.style.cursor = 'pointer';
-            } else {
-                searchIcon.classList.remove('fa-times');
-                searchIcon.classList.add('fa-search');
-                searchIcon.style.cursor = 'default';
-            }
-
-            const searchTerm = this.value.toLowerCase();
-            const sections = document.querySelectorAll('section');
+            // Search Functionality
+            const searchInput = document.getElementById('searchInput');
+            const searchIcon = document.querySelector('.search-container i');
+            let originalContent = {};
+            const sections = document.querySelectorAll('main section[id]'); // Get sections once
             
+            // Save original content
             sections.forEach(section => {
-                section.innerHTML = originalContent[section.id];
+                originalContent[section.id] = section.innerHTML;
+            });
+
+            // Focus/Blur effects (no need to throttle/debounce)
+            searchInput.addEventListener('focus', () => {
+                searchIcon.style.transform = 'scale(1.2)';
+                searchIcon.style.color = '#2980b9';
+            });
+
+            searchInput.addEventListener('blur', () => {
+                searchIcon.style.transform = 'scale(1)';
+                searchIcon.style.color = '#3498db';
+            });
+
+            // Debounce search input handling
+            const handleSearchInput = debounce(function() {
+                const searchTerm = this.value.trim().toLowerCase(); // Trim whitespace
                 
+                // Update clear icon state first
                 if (searchTerm) {
-                    const text = section.textContent.toLowerCase();
-                    if (text.includes(searchTerm)) {
-                        section.style.display = 'block';
-                        const regex = new RegExp(searchTerm, 'gi');
-                        section.innerHTML = section.innerHTML.replace(regex, match => 
-                            `<span class="highlight">${match}</span>`
-                        );
+                    searchIcon.classList.remove('fa-search');
+                    searchIcon.classList.add('fa-times');
+                    searchIcon.style.cursor = 'pointer';
+                } else {
+                    searchIcon.classList.remove('fa-times');
+                    searchIcon.classList.add('fa-search');
+                    searchIcon.style.cursor = 'default';
+                }
+
+                sections.forEach(section => {
+                    // Restore original content before searching/highlighting
+                    section.innerHTML = originalContent[section.id]; 
+                    
+                    if (searchTerm) {
+                        const text = section.textContent.toLowerCase();
+                        if (text.includes(searchTerm)) {
+                            section.style.display = 'block';
+                            try {
+                                // Escape special characters for regex
+                                const escapedSearchTerm = searchTerm.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                                const regex = new RegExp(escapedSearchTerm, 'gi'); 
+                                section.innerHTML = section.innerHTML.replace(regex, match => 
+                                    `<span class="highlight">${match}</span>`
+                                );
+                            } catch (e) {
+                                console.error("Regex error during search highlight:", e);
+                                // Fallback: just show section without highlight if regex fails
+                            }
+                        } else {
+                            section.style.display = 'none';
+                        }
                     } else {
-                        section.style.display = 'none';
+                        section.style.display = 'block';
+                    }
+                });
+            }, 300); // Debounce search highlighting by 300ms
+
+            searchInput.addEventListener('input', handleSearchInput);
+
+            // Clear search on icon click
+            searchIcon.addEventListener('click', function() {
+                if (this.classList.contains('fa-times')) {
+                    searchInput.value = '';
+                    searchInput.dispatchEvent(new Event('input', { bubbles: true })); // Ensure debounced function runs
+                    // Icon change is handled by the debounced function now
+                }
+            });
+
+            // Mobile responsive adjustments
+            const adjustMobileLayout = debounce(function() { // Debounce resize adjustments
+                if (window.innerWidth <= 768) {
+                    const searchContainer = document.querySelector('.search-container');
+                    const themeToggle = document.querySelector('.theme-toggle');
+                    const printButton = document.querySelector('.print-button');
+                    
+                    if (searchContainer && themeToggle && printButton) {
+                        const availableWidth = window.innerWidth - themeToggle.offsetWidth - printButton.offsetWidth - 40; // Recalculate offsets
+                        searchContainer.style.maxWidth = `${Math.min(availableWidth, 300)}px`;
                     }
                 } else {
-                    section.style.display = 'block';
+                     // Reset styles when screen is larger
+                     const searchContainer = document.querySelector('.search-container');
+                     if(searchContainer) searchContainer.style.maxWidth = ''; // Reset max-width
                 }
+            }, 250); // Debounce resize by 250ms
+
+            window.addEventListener('resize', adjustMobileLayout);
+            window.addEventListener('load', adjustMobileLayout); // Run once on load
+
+            // Print Functionality
+            const printButton = document.getElementById('printButton');
+            printButton.addEventListener('click', function() {
+                window.print();
             });
-        });
 
-        // Clear search on icon click
-        searchIcon.addEventListener('click', function() {
-            if (this.classList.contains('fa-times')) {
-                searchInput.value = '';
-                searchInput.dispatchEvent(new Event('input'));
-                this.classList.remove('fa-times');
-                this.classList.add('fa-search');
-                this.style.cursor = 'default';
-            }
-        });
+            // Note taking functionality
+            const noteContainer = document.querySelector('.note-container');
+            const noteContent = document.querySelector('.note-content');
+            const noteTextarea = document.querySelector('.note-content textarea');
+            const saveButton = document.querySelector('.note-content button');
 
-        // Mobile responsive adjustments
-        function adjustMobileLayout() {
-            if (window.innerWidth <= 768) {
-                const searchContainer = document.querySelector('.search-container');
-                const themeToggle = document.querySelector('.theme-toggle');
-                const printButton = document.querySelector('.print-button');
-                
-                if (searchContainer && themeToggle && printButton) {
-                    const availableWidth = window.innerWidth - themeToggle.offsetWidth - printButton.offsetWidth - 40;
-                    searchContainer.style.maxWidth = `${Math.min(availableWidth, 300)}px`;
+            // Load saved notes
+            function loadNotes() {
+                try {
+                    const notes = JSON.parse(localStorage.getItem('investmentNotes') || '[]');
+                    if (noteTextarea && notes.length > 0) {
+                        noteTextarea.value = notes.map(note => 
+                            `[${new Date(note.date).toLocaleString()}] ${note.text}`
+                        ).join('\n\n');
+                    }
+                } catch (error) {
+                    console.error('Error loading notes:', error);
+                    if(noteTextarea) noteTextarea.value = ''; // Check if textarea exists before setting value
                 }
             }
-        }
 
-        window.addEventListener('resize', adjustMobileLayout);
-        window.addEventListener('load', adjustMobileLayout);
-
-        // Note taking functionality
-        const noteContainer = document.querySelector('.note-container');
-        const noteContent = document.querySelector('.note-content');
-        const noteTextarea = document.querySelector('.note-content textarea');
-        const saveButton = document.querySelector('.note-content button');
-
-        // Load saved notes
-        if (noteTextarea) {
-            const savedNotes = localStorage.getItem('investmentNotes');
-            if (savedNotes) {
-                noteTextarea.value = savedNotes;
+            // Load notes on page load
+            if (noteTextarea) { // Check if textarea exists before loading
+                loadNotes();
             }
-        }
 
-        // Toggle note visibility
-        if (noteContainer && noteContent) {
-            noteContainer.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (noteContent.style.display === 'block') {
-                    noteContent.style.display = 'none';
-                } else {
-                    noteContent.style.display = 'block';
-                }
-            });
+            // Toggle note visibility
+            if (noteContainer) { // Check if container exists
+                noteContainer.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    if (noteContent.style.display === 'block') {
+                        noteContent.style.display = 'none';
+                    } else {
+                        noteContent.style.display = 'block';
+                    }
+                });
+            }
 
             // Close notes when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!noteContent.contains(e.target) && !noteContainer.contains(e.target)) {
+            document.addEventListener('click', function(e) {
+                if (noteContent && noteContent.style.display === 'block' && // Check if noteContent exists
+                    !noteContent.contains(e.target) && 
+                    noteContainer && !noteContainer.contains(e.target)) { // Check if noteContainer exists
                     noteContent.style.display = 'none';
                 }
             });
-        }
+            
+            // Prevent clicks inside the note content from closing it
+            if (noteContent) { // Check if noteContent exists
+                noteContent.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
 
-        // Auto-save notes
-        if (noteTextarea) {
-            let saveTimeout;
-            noteTextarea.addEventListener('input', () => {
-                clearTimeout(saveTimeout);
-                saveTimeout = setTimeout(() => {
-                    localStorage.setItem('investmentNotes', noteTextarea.value);
-                }, 500);
-            });
-        }
+            // Auto-save notes (already debounced with setTimeout)
+            if (noteTextarea) { // Check if textarea exists
+                let saveTimeout;
+                noteTextarea.addEventListener('input', function() {
+                    clearTimeout(saveTimeout);
+                    saveTimeout = setTimeout(() => {
+                        try {
+                            const notes = this.value.split('\n\n').map(text => {
+                                const match = text.match(/\[(.*?)\]\s*(.*)/);
+                                return match ? {
+                                    date: new Date(match[1]).toISOString(),
+                                    text: match[2]
+                                } : {
+                                    date: new Date().toISOString(),
+                                    text: text
+                                };
+                            });
+                            localStorage.setItem('investmentNotes', JSON.stringify(notes));
+                        } catch (error) {
+                            console.error('Error auto-saving notes:', error);
+                        }
+                    }, 500);
+                });
+            }
 
-        // Save button functionality
-        if (saveButton && noteTextarea) {
-            saveButton.addEventListener('click', () => {
-                localStorage.setItem('investmentNotes', noteTextarea.value);
-                saveButton.textContent = 'Saved!';
-                setTimeout(() => {
-                    saveButton.textContent = 'Save Notes';
-                }, 2000);
-            });
-        }
+            // Save button functionality
+            if (saveButton) { // Check if button exists
+                saveButton.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    try {
+                        const notes = noteTextarea.value.split('\n\n').map(text => {
+                            const match = text.match(/\[(.*?)\]\s*(.*)/);
+                            return match ? {
+                                date: new Date(match[1]).toISOString(),
+                                text: match[2]
+                            } : {
+                                date: new Date().toISOString(),
+                                text: text
+                            };
+                        });
+                        localStorage.setItem('investmentNotes', JSON.stringify(notes));
+                        this.textContent = 'Saved!';
+                        setTimeout(() => {
+                            this.textContent = 'Save Notes';
+                        }, 2000);
+                    } catch (error) {
+                        console.error('Error saving notes manually:', error);
+                        this.textContent = 'Error!';
+                        setTimeout(() => {
+                            this.textContent = 'Save Notes';
+                        }, 2000);
+                    }
+                });
+            }
 
-        // Print Functionality
-        const printButton = document.getElementById('printButton');
-        printButton.addEventListener('click', function() {
-            window.print();
-        });
-
-        // FAB Functionality
-        const fab = document.getElementById('fab');
-        fab.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-
-        // Create note functionality
-        const createNoteContainer = document.querySelector('.create-note-container');
-        const createNoteContent = document.querySelector('.create-note-content');
-        const createNoteTextarea = document.querySelector('.create-note-content textarea');
-        const createNoteButton = document.querySelector('.create-note-content button');
-
-        // Toggle create note visibility
-        if (createNoteContainer && createNoteContent) {
-            createNoteContainer.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (createNoteContent.style.display === 'block') {
-                    createNoteContent.style.display = 'none';
-                } else {
-                    createNoteContent.style.display = 'block';
-                }
-            });
-
-            // Close create note when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!createNoteContent.contains(e.target) && !createNoteContainer.contains(e.target)) {
-                    createNoteContent.style.display = 'none';
-                }
-            });
-        }
-
-        // Save create note
-        if (createNoteButton && createNoteTextarea) {
-            createNoteButton.addEventListener('click', () => {
-                const noteText = createNoteTextarea.value;
-                if (noteText) {
-                    // Save to local storage
-                    const notes = JSON.parse(localStorage.getItem('investmentNotes') || '[]');
-                    notes.push({
-                        text: noteText,
-                        date: new Date().toISOString()
+            // FAB Functionality
+            const fab = document.getElementById('fab');
+            if (fab) { // Check if FAB exists
+                fab.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
                     });
-                    localStorage.setItem('investmentNotes', JSON.stringify(notes));
+                });
+            }
+
+            // Quick Navigation Functionality
+            const quickNavContainer = document.querySelector('.quick-nav');
+            // Use previously defined sections query
+            const quickNavHeadings = document.querySelectorAll('main h2'); // Use headings if sections don't have IDs
+            const quickNavTargets = sections.length > 0 ? sections : quickNavHeadings;
+
+            if (quickNavContainer && quickNavTargets.length > 0) {
+                const observerOptions = {
+                    root: null, // relative to document viewport
+                    rootMargin: '0px',
+                    threshold: 0.4 // Trigger when 40% of the element is visible
+                };
+
+                const observerCallback = (entries) => {
+                    let latestActiveEntry = null;
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+                           if (!latestActiveEntry || entry.target.getBoundingClientRect().top < latestActiveEntry.target.getBoundingClientRect().top) {
+                               latestActiveEntry = entry;
+                           }
+                        }
+                    });
+
+                    // Remove active class from all links first
+                    quickNavContainer.querySelectorAll('a').forEach(a => a.classList.remove('active'));
                     
-                    // Clear textarea
-                    createNoteTextarea.value = '';
-                    
-                    // Show success message
-                    createNoteButton.textContent = 'Saved!';
-                    setTimeout(() => {
-                        createNoteButton.textContent = 'Save Note';
-                    }, 2000);
-                }
-            });
-        }
+                    // Add active class to the link corresponding to the top-most visible section
+                    if (latestActiveEntry) {
+                        const activeId = latestActiveEntry.target.id;
+                        const activeLink = quickNavContainer.querySelector(`a[href="#${activeId}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                };
+
+                const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+                quickNavTargets.forEach((target, index) => {
+                    // Ensure target has an ID
+                    if (!target.id) {
+                        target.id = `question-${index + 1}`;
+                    }
+                    const targetId = target.id;
+
+                    // Create link
+                    const link = document.createElement('a');
+                    link.href = `#${targetId}`;
+                    link.textContent = index + 1;
+                    link.title = target.querySelector('h2, h3, h4') ? target.querySelector('h2, h3, h4').textContent.trim() : `Question ${index + 1}`; // Add tooltip
+
+                    // Add smooth scroll behavior
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    });
+
+                    // Append link to container
+                    quickNavContainer.appendChild(link);
+
+                    // Observe the target section
+                    observer.observe(target);
+                });
+            } else {
+                // Hide container if no targets found or container doesn't exist
+                if (quickNavContainer) quickNavContainer.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html> 

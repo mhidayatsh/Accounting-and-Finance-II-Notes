@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VEC - Coming Soon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #3498db;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+            position: relative;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            background: #3498db;
+            color: white;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid #3498db;
+            border-radius: 50px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .logo span {
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover span {
+            transform: rotate(360deg);
+        }
+
+        .content-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .email-box {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .email-box a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .email-box a:hover {
+            text-decoration: underline;
+        }
+
+        .feedback-form {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .feedback-form h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: #f5f5f5;
+        }
+
+        body.dark-mode .content-box {
+            background: rgba(40, 40, 40, 0.95);
+        }
+
+        body.dark-mode h1,
+        body.dark-mode h3 {
+            color: #3498db;
+        }
+
+        body.dark-mode .message,
+        body.dark-mode .form-group label {
+            color: #bdc3c7;
+        }
+
+        body.dark-mode .email-box {
+            background: #2d3436;
+        }
+
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group textarea {
+            background: #2d3436;
+            border-color: #444;
+            color: #fff;
+        }
+
+        body.dark-mode .logo {
+            background: rgba(40, 40, 40, 0.9);
+            color: #3498db;
+        }
+
+        body.dark-mode .logo:hover {
+            background: #3498db;
+            color: white;
+        }
+
+        body.dark-mode .logo::before {
+            border-color: #3498db;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="container">
+        <a href="index.html" class="logo">
+            <span>M</span><span>H</span><span>S</span>
+        </a>
+        <div class="content-box">
+            <h1>VEC</h1>
+            <p class="message">In Sha Allah, it will be available soon</p>
+            
+            <div class="email-box">
+                <p>If you have notes available, please share them with us at:</p>
+                <a href="mailto:mdhidayatullahsheikh786@gmail.com">mdhidayatullahsheikh786@gmail.com</a>
+            </div>
+
+            <div class="feedback-form">
+                <h3>Share Your Feedback</h3>
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback">Your Feedback</label>
+                        <textarea id="feedback" name="feedback" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit Feedback</button>
+                </form>
+            </div>
+
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Subjects
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const themeIcon = themeToggle.querySelector('i');
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                themeIcon.classList.toggle('fa-moon');
+                themeIcon.classList.toggle('fa-sun');
+                localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+            });
+
+            // Load saved theme preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+
+            // Feedback Form Handling
+            const feedbackForm = document.getElementById('feedbackForm');
+            feedbackForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your feedback! We will review it soon.');
+                feedbackForm.reset();
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Over - Study Notes Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            text-align: center;
+            animation: bounceIn 1s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.3); opacity: 0; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+            70% { transform: scale(0.9); opacity: 0.9; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .message-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(52, 152, 219, 0.1));
+            z-index: 1;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .emoji {
+            font-size: 5em;
+            margin: 20px 0;
+            display: block;
+            animation: rotate 2s infinite;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-10deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        .message {
+            color: #7f8c8d;
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .back-btn:hover {
+            background: #2980b9;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .back-btn i {
+            margin-right: 10px;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+        }
+
+        body.dark-mode .message-box {
+            background: rgba(40, 40, 40, 0.95);
+        }
+
+        body.dark-mode h1 {
+            color: #3498db;
+        }
+
+        body.dark-mode .message {
+            color: #bdc3c7;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .message {
+                font-size: 1.2em;
+            }
+
+            .emoji {
+                font-size: 4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="container">
+        <div class="message-box">
+            <h1>Exam Khatm Ho Gaya!</h1>
+            <span class="emoji">😂</span>
+            <p class="message">Notes lekar kya karega? 😂</p>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Subjects
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const themeIcon = themeToggle.querySelector('i');
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                themeIcon.classList.toggle('fa-moon');
+                themeIcon.classList.toggle('fa-sun');
+                localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+            });
+
+            // Load saved theme preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+    </script>
+</body>
+</html> 

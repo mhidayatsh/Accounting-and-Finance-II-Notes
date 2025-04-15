@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Feedback Viewer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .login-container h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .submit-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header h1 {
+            color: #2c3e50;
+        }
+
+        .logout-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .feedback-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .feedback-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .feedback-item h3 {
+            color: #3498db;
+            margin-bottom: 10px;
+        }
+
+        .feedback-item p {
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+
+        .feedback-item .email {
+            color: #3498db;
+            font-size: 0.9em;
+        }
+
+        .feedback-item .date {
+            font-size: 0.8em;
+            color: #95a5a6;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+            color: #f5f5f5;
+        }
+
+        body.dark-mode .login-container,
+        body.dark-mode .feedback-item {
+            background: #2d3436;
+        }
+
+        body.dark-mode h1,
+        body.dark-mode h3 {
+            color: #3498db;
+        }
+
+        body.dark-mode .form-group label {
+            color: #bdc3c7;
+        }
+
+        body.dark-mode .form-group input {
+            background: #3d4346;
+            border-color: #444;
+            color: #fff;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 10px;
+            }
+
+            .feedback-list {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <div class="container">
+        <div class="login-container" id="loginContainer">
+            <h1>Admin Login</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+        </div>
+
+        <div class="dashboard" id="dashboard">
+            <div class="dashboard-header">
+                <h1>Feedback Dashboard</h1>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+            <div class="feedback-list" id="feedbackList">
+                <!-- Feedback items will be added here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+            const themeIcon = themeToggle.querySelector('i');
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-mode');
+                themeIcon.classList.toggle('fa-moon');
+                themeIcon.classList.toggle('fa-sun');
+                localStorage.setItem('darkMode', body.classList.contains('dark-mode'));
+            });
+
+            // Load saved theme preference
+            if (localStorage.getItem('darkMode') === 'true') {
+                body.classList.add('dark-mode');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+
+            // Login Form
+            const loginForm = document.getElementById('loginForm');
+            const loginContainer = document.getElementById('loginContainer');
+            const dashboard = document.getElementById('dashboard');
+            const logoutBtn = document.getElementById('logoutBtn');
+
+            // Check if already logged in
+            if (localStorage.getItem('adminLoggedIn') === 'true') {
+                loginContainer.style.display = 'none';
+                dashboard.style.display = 'block';
+                displayFeedbacks();
+            }
+
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const password = document.getElementById('password').value;
+                
+                // Replace 'your_password' with your desired password
+                if (password === 'mhs123') {
+                    localStorage.setItem('adminLoggedIn', 'true');
+                    loginContainer.style.display = 'none';
+                    dashboard.style.display = 'block';
+                    displayFeedbacks();
+                } else {
+                    alert('Incorrect password!');
+                }
+            });
+
+            logoutBtn.addEventListener('click', function() {
+                localStorage.removeItem('adminLoggedIn');
+                loginContainer.style.display = 'block';
+                dashboard.style.display = 'none';
+            });
+
+            function displayFeedbacks() {
+                const feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
+                const feedbackList = document.getElementById('feedbackList');
+                feedbackList.innerHTML = '';
+                
+                if (feedbacks.length === 0) {
+                    feedbackList.innerHTML = '<p>No feedback available yet.</p>';
+                    return;
+                }
+
+                feedbacks.forEach((feedback, index) => {
+                    const feedbackItem = document.createElement('div');
+                    feedbackItem.className = 'feedback-item';
+                    feedbackItem.innerHTML = `
+                        <h3>${feedback.name}</h3>
+                        <p class="email">${feedback.email}</p>
+                        <p>${feedback.feedback}</p>
+                        <p class="date">${feedback.date}</p>
+                        <button class="delete-btn" onclick="deleteFeedback(${index})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    `;
+                    feedbackList.appendChild(feedbackItem);
+                });
+            }
+
+            window.deleteFeedback = function(index) {
+                if (confirm('Are you sure you want to delete this feedback?')) {
+                    const feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
+                    feedbacks.splice(index, 1);
+                    localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+                    displayFeedbacks();
+                }
+            };
+        });
+    </script>
+</body>
+</html> 

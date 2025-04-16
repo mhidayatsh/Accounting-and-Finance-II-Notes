@@ -633,7 +633,6 @@
             border-radius: 3px;
         }
 
-        /* Fix search functionality */
         .search-results {
             position: fixed;
             top: 5rem;
@@ -646,8 +645,12 @@
             max-height: 400px;
             overflow-y: auto;
             display: none;
-            z-index: 1004;
+            z-index: 1001;
             transition: all 0.3s ease;
+        }
+
+        .search-results.active {
+            display: block;
         }
 
         .search-result-item {
@@ -655,7 +658,10 @@
             cursor: pointer;
             transition: all 0.3s ease;
             border-bottom: 1px solid var(--border-color);
-            color: var(--text-color);
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
         }
 
         .search-result-item:hover {
@@ -736,10 +742,9 @@
 
         @media (max-width: 768px) {
             .container {
-                margin-left: 0;
-                width: 100%;
                 padding: 1rem;
                 padding-top: 4rem;
+                max-width: 100%;
             }
             
             h1 {
@@ -1021,7 +1026,6 @@
             box-shadow: 0 2px 4px var(--shadow-color);
             transition: all 0.3s ease;
             position: relative;
-            margin-bottom: 1rem;
         }
 
         .note-card:hover {
@@ -2086,11 +2090,11 @@
             
             if (toc.classList.contains('active')) {
                 toc.classList.remove('active');
-                overlay.style.display = 'none';
+                overlay.classList.remove('active');
                 menuToggle.classList.remove('active');
             } else {
                 toc.classList.add('active');
-                overlay.style.display = 'block';
+                overlay.classList.add('active');
                 menuToggle.classList.add('active');
             }
         }
@@ -2105,7 +2109,7 @@
                     
                     if (toc.classList.contains('active')) {
                         toc.classList.remove('active');
-                        overlay.style.display = 'none';
+                        overlay.classList.remove('active');
                         menuToggle.classList.remove('active');
                     }
                 }
@@ -2145,7 +2149,7 @@
             notification.style.padding = '1rem 2rem';
             notification.style.borderRadius = '0.5rem';
             notification.style.boxShadow = '0 2px 4px var(--shadow-color)';
-            notification.style.zIndex = '1005';
+            notification.style.zIndex = '1003';
             notification.style.animation = 'slideIn 0.3s ease';
             
             document.body.appendChild(notification);
@@ -2253,7 +2257,7 @@
                 form[0].value = note.title;
                 form[1].value = note.content;
                 modal.style.display = 'block';
-                
+                // Update the form submission to handle editing
                 form.onsubmit = function(e) {
                     e.preventDefault();
                     const updatedNote = {

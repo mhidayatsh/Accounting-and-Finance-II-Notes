@@ -1144,22 +1144,6 @@
             color: var(--text-color);
         }
 
-        /* Add section counter */
-        .toc-section-counter {
-            position: fixed;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--primary-color);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-size: 0.9rem;
-            opacity: 0.8;
-            transition: all 0.3s ease;
-            z-index: 1001;
-        }
-
         /* Add scroll to top button */
         .scroll-to-top {
             position: fixed;
@@ -1237,11 +1221,6 @@
             <span>Estimated reading time: 15 minutes</span>
         </div>
     </div>
-
-    <div class="toc-section-counter">Section 1 of 9</div>
-    <button class="scroll-to-top" onclick="scrollToTop()">
-        <i class="fas fa-arrow-up"></i>
-    </button>
 
     <div class="container">
         <h1>Marketing Mix Notes</h1>
@@ -2295,21 +2274,6 @@
             document.querySelector('.toc-progress-bar').style.height = scrolled + '%';
         }
 
-        // Update section counter
-        function updateSectionCounter() {
-            const sections = document.querySelectorAll('.section');
-            let currentSection = 1;
-            
-            sections.forEach((section, index) => {
-                const rect = section.getBoundingClientRect();
-                if (rect.top <= 100) {
-                    currentSection = index + 1;
-                }
-            });
-            
-            document.querySelector('.toc-section-counter').textContent = `Section ${currentSection} of ${sections.length}`;
-        }
-
         // Show/hide scroll to top button
         function toggleScrollToTop() {
             const scrollToTop = document.querySelector('.scroll-to-top');
@@ -2336,13 +2300,11 @@
         // Add event listeners
         window.addEventListener('scroll', () => {
             updateProgress();
-            updateSectionCounter();
             toggleScrollToTop();
         });
 
         // Initialize
         updateProgress();
-        updateSectionCounter();
         toggleScrollToTop();
     </script>
 </body>

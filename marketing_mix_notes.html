@@ -9,24 +9,26 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2c3e50;
-            --accent-color: #e74c3c;
-            --text-color: #333;
-            --bg-color: #f5f7fa;
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #dc2626;
+            --text-color: #1f2937;
+            --bg-color: #f3f4f6;
             --container-bg: #ffffff;
-            --border-color: #ddd;
+            --border-color: #e5e7eb;
             --shadow-color: rgba(0,0,0,0.1);
+            --success-color: #059669;
+            --warning-color: #d97706;
         }
 
         [data-theme="dark"] {
-            --primary-color: #2980b9;
-            --secondary-color: #ecf0f1;
-            --accent-color: #c0392b;
-            --text-color: #ecf0f1;
-            --bg-color: #1a1a1a;
-            --container-bg: #2c2c2c;
-            --border-color: #404040;
+            --primary-color: #3b82f6;
+            --secondary-color: #60a5fa;
+            --accent-color: #ef4444;
+            --text-color: #f3f4f6;
+            --bg-color: #111827;
+            --container-bg: #1f2937;
+            --border-color: #374151;
             --shadow-color: rgba(0,0,0,0.3);
         }
         
@@ -41,20 +43,24 @@
         }
         
         .container {
+            margin-left: 300px;
+            padding: 2rem;
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            width: calc(100% - 300px);
         }
         
         h1 {
+            font-size: clamp(1.35rem, 4vw, 2.5rem);
             color: var(--secondary-color);
+            margin-bottom: 2rem;
             text-align: center;
-            margin: 40px 0;
-            font-size: 2.5em;
             position: relative;
-            padding-bottom: 15px;
+            padding-bottom: 1rem;
         }
         
         h1::after {
@@ -64,37 +70,32 @@
             left: 50%;
             transform: translateX(-50%);
             width: 100px;
-            height: 3px;
+            height: 4px;
             background: var(--primary-color);
+            border-radius: 2px;
         }
         
         h2 {
+            font-size: clamp(1.15rem, 3vw, 1.75rem);
             color: var(--accent-color);
-            margin-top: 40px;
-            font-size: 1.8em;
-            position: relative;
-            padding-left: 20px;
+            margin: 2rem 0 1.5rem;
+            padding-left: 1rem;
             border-left: 4px solid var(--accent-color);
         }
         
         h3 {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
             color: var(--primary-color);
-            margin-top: 30px;
-            font-size: 1.4em;
+            margin: 1.5rem 0 1rem;
         }
         
         .definition-box {
             background: var(--container-bg);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            box-shadow: 0 4px 6px var(--shadow-color);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 1.5rem 0;
             border-left: 4px solid var(--primary-color);
-            transition: transform 0.3s ease;
-        }
-        
-        .definition-box:hover {
-            transform: translateY(-5px);
+            box-shadow: 0 2px 4px var(--shadow-color);
         }
         
         .definition-box p {
@@ -104,16 +105,18 @@
         
         .content-box {
             background: var(--container-bg);
-            padding: 25px;
-            border-radius: 10px;
-            margin: 20px 0;
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
             box-shadow: 0 4px 6px var(--shadow-color);
             transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .content-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 15px var(--shadow-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px var(--shadow-color);
         }
         
         ul, ol {
@@ -121,24 +124,25 @@
         }
         
         li {
-            margin-bottom: 10px;
+            margin-bottom: 0.5rem;
             position: relative;
+            padding-left: 1.5rem;
         }
         
         li::before {
             content: '•';
             color: var(--primary-color);
             position: absolute;
-            left: -15px;
+            left: 0;
         }
         
         .summary-box {
             background: var(--container-bg);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 30px 0;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 1.5rem 0;
             border-left: 4px solid var(--accent-color);
-            box-shadow: 0 4px 6px var(--shadow-color);
+            box-shadow: 0 2px 4px var(--shadow-color);
         }
         
         .summary-box p {
@@ -148,38 +152,40 @@
         
         .theme-toggle {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 1rem;
+            right: 1rem;
             background: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            z-index: 1000;
+            z-index: 1002;
+            box-shadow: 0 2px 4px var(--shadow-color);
         }
         
         .theme-toggle:hover {
+            background: var(--secondary-color);
             transform: scale(1.05);
         }
         
         .fab {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
+            bottom: 2rem;
+            right: 6rem;
+            width: 3rem;
+            height: 3rem;
             background: var(--primary-color);
             color: white;
-            border-radius: 50%;
+            border-radius: 0.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 8px var(--shadow-color);
+            box-shadow: 0 2px 4px var(--shadow-color);
             transition: all 0.3s ease;
-            z-index: 1000;
+            z-index: 1001;
         }
         
         .fab:hover {
@@ -194,18 +200,20 @@
             width: 100%;
             height: 100%;
             background: rgba(0,0,0,0.5);
-            z-index: 1001;
+            z-index: 1003;
+            backdrop-filter: blur(2px);
         }
         
         .modal-content {
             background: var(--container-bg);
             margin: 15% auto;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 90%;
             max-width: 600px;
             position: relative;
             animation: modalSlideIn 0.3s ease;
+            box-shadow: 0 4px 6px var(--shadow-color);
         }
         
         @keyframes modalSlideIn {
@@ -231,420 +239,952 @@
         .note-form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 1rem;
         }
         
         .note-form input,
         .note-form textarea {
-            padding: 10px;
+            padding: 0.75rem;
             border: 1px solid var(--border-color);
-            border-radius: 5px;
+            border-radius: 0.5rem;
             background: var(--container-bg);
             color: var(--text-color);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .note-form input:focus,
+        .note-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px var(--primary-color);
         }
         
         .note-form button {
             background: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px;
-            border-radius: 5px;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 1rem;
         }
         
         .note-form button:hover {
+            background: var(--secondary-color);
             transform: scale(1.02);
         }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-                padding-top: 150px; /* Increased space for fixed elements */
-                margin-top: 0;
-            }
-            
-            h1 {
-                font-size: 2em;
-                margin: 20px 0;
-                padding-top: 0;
-            }
 
-            .search-container {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                width: 100%;
-                padding: 15px;
-                background: var(--container-bg);
-                box-shadow: 0 2px 5px var(--shadow-color);
-                z-index: 1000;
-            }
-
-            .search-input {
-                flex: 1;
-                padding: 8px;
-            }
-
-            .search-button {
-                width: auto;
-                padding: 8px 15px;
-            }
-
-            .search-results {
-                top: 50px;
-                width: 100%;
-                max-height: 200px;
-                z-index: 1001;
-            }
-
-            .toc-container {
-                position: fixed;
-                top: 60px;
-                left: 0;
-                right: 0;
-                height: 50px;
-                background: var(--container-bg);
-                box-shadow: 0 2px 5px var(--shadow-color);
-                z-index: 1000;
-                display: block !important;
-                overflow: visible;
-            }
-
-            .toc-title {
-                display: none;
-            }
-
-            .toc-list {
-                display: flex;
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                gap: 8px;
-                padding: 5px;
-                height: 100%;
-                align-items: center;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-                -ms-overflow-style: none;
-                scroll-behavior: smooth;
-            }
-
-            .toc-item {
-                flex: 0 0 auto;
-                margin: 0;
-                position: relative;
-            }
-
-            .toc-link {
-                display: block;
-                padding: 5px 10px;
-                background: var(--primary-color);
-                color: white;
-                border-radius: 5px;
-                font-size: 0.8em;
-                white-space: nowrap;
-                text-decoration: none;
-                transition: all 0.2s ease;
-                position: relative;
-                overflow: hidden;
-            }
-
-            .toc-link::after {
-                content: '';
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 2px;
-                background: white;
-                transform: scaleX(0);
-                transition: transform 0.2s ease;
-            }
-
-            .toc-link:hover::after,
-            .toc-link.active::after {
-                transform: scaleX(1);
-            }
-
-            .toc-link.active {
-                background: var(--accent-color);
-                font-weight: bold;
-                transform: scale(1.05);
-            }
-
-            .toc-link:active {
-                transform: scale(0.95);
-            }
-
-            /* Add navigation arrows */
-            .toc-nav {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                width: 30px;
-                background: var(--container-bg);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 1001;
-                cursor: pointer;
-                opacity: 0.8;
-                transition: opacity 0.2s ease;
-            }
-
-            .toc-nav:hover {
-                opacity: 1;
-            }
-
-            .toc-nav-left {
-                left: 0;
-                background: linear-gradient(to right, var(--container-bg), transparent);
-            }
-
-            .toc-nav-right {
-                right: 0;
-                background: linear-gradient(to left, var(--container-bg), transparent);
-            }
-
-            .toc-nav i {
-                color: var(--text-color);
-                font-size: 1.2em;
-            }
-
-            /* Add scroll indicator */
-            .toc-scroll-indicator {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                height: 3px;
-                background: var(--primary-color);
-                transition: width 0.3s ease;
-            }
-
-            /* Add touch feedback */
-            .toc-link:active {
-                background: var(--accent-color);
-            }
-
-            /* Add section indicator */
-            .section-indicator {
-                position: fixed;
-                top: 120px;
-                right: 10px;
-                background: var(--container-bg);
-                padding: 5px 10px;
-                border-radius: 5px;
-                font-size: 0.8em;
-                box-shadow: 0 2px 5px var(--shadow-color);
-                z-index: 1001;
-                opacity: 0.8;
-                transition: opacity 0.3s ease;
-            }
-
-            .section-indicator:hover {
-                opacity: 1;
-            }
-
-            .theme-toggle {
-                top: 15px;
-                right: 15px;
-                z-index: 1002;
-            }
-
-            .fab {
-                bottom: 20px;
-                right: 20px;
-                z-index: 1002;
-            }
-
-            .content-box {
-                margin: 20px 0;
-                padding: 20px;
-                background: var(--container-bg);
-                border-radius: 10px;
-                box-shadow: 0 2px 5px var(--shadow-color);
-                position: relative;
-                z-index: 1;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding-top: 140px;
-            }
-
-            .search-container {
-                padding: 10px;
-            }
-
-            .toc-container {
-                top: 50px;
-                height: 45px;
-            }
-
-            .toc-link {
-                padding: 4px 8px;
-                font-size: 0.75em;
-            }
-
-            .search-results {
-                top: 45px;
-            }
-
-            .toc-nav {
-                width: 25px;
-            }
-
-            .content-box {
-                padding: 15px;
-            }
-        }
-
-        /* Add these new styles */
+        /* TOC Styles */
         .toc-container {
             position: fixed;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 0;
+            left: 0;
+            width: 300px;
+            height: 100vh;
             background: var(--container-bg);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px var(--shadow-color);
-            max-width: 250px;
-            max-height: 80vh;
+            padding: 2rem;
+            box-shadow: 2px 0 10px var(--shadow-color);
+            z-index: 1002;
             overflow-y: auto;
-            z-index: 1000;
+            transition: transform 0.3s ease;
+            transform: translateX(-100%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .toc-container.active {
+            transform: translateX(0);
+        }
+
+        .toc-progress {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100vh;
+            background: var(--border-color);
+            z-index: 1003;
+        }
+
+        .toc-progress-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: var(--primary-color);
+            transition: height 0.3s ease;
+        }
+
+        .toc-quick-actions {
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .quick-action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--bg-color);
+            border: none;
+            border-radius: 0.5rem;
+            color: var(--text-color);
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .toc-container:hover {
-            transform: translateY(-50%) scale(1.02);
+        .quick-action-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .quick-action-btn i {
+            font-size: 1.1rem;
         }
 
         .toc-title {
-            font-size: 1.2em;
+            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 15px;
             color: var(--primary-color);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
             border-bottom: 2px solid var(--primary-color);
-            padding-bottom: 5px;
         }
 
         .toc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
         .toc-item {
-            margin-bottom: 8px;
+            margin: 0;
         }
 
         .toc-link {
             color: var(--text-color);
             text-decoration: none;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
             display: block;
-            padding: 5px 0;
+            font-size: 0.95rem;
         }
 
         .toc-link:hover {
-            color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
             transform: translateX(5px);
         }
 
         .toc-link.active {
-            color: var(--primary-color);
-            font-weight: 600;
-            border-left: 3px solid var(--primary-color);
-            padding-left: 10px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 500;
         }
 
-        .section {
-            scroll-margin-top: 100px;
+        /* Update vertical numbers styles */
+        .vertical-numbers {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--container-bg);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px var(--shadow-color);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: all 0.3s ease;
         }
 
-        @media (max-width: 1200px) {
-            .toc-container {
+        /* Add mobile styles for vertical numbers */
+        @media (max-width: 768px) {
+            .vertical-numbers {
+                position: fixed;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                background: var(--container-bg);
+                padding: 10px;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px var(--shadow-color);
+                z-index: 1000;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                opacity: 0.8;
+            }
+
+            .vertical-number {
+                padding: 4px 8px;
+                font-size: 0.9rem;
+            }
+
+            /* Hide vertical numbers when menu is open */
+            .toc-container.active ~ .vertical-numbers {
                 display: none;
             }
         }
 
-        /* Add search styles */
-        .search-container {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            background: var(--container-bg);
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px var(--shadow-color);
-            width: 80%;
-            max-width: 500px;
-            display: flex;
-            gap: 10px;
+        @media (max-width: 480px) {
+            .vertical-numbers {
+                right: 5px;
+                padding: 8px;
+                gap: 6px;
+                opacity: 0.7;
+            }
+
+            .vertical-number {
+                padding: 3px 6px;
+                font-size: 0.8rem;
+            }
         }
 
-        .search-input {
-            flex: 1;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            background: var(--container-bg);
-            color: var(--text-color);
-            font-size: 1em;
-        }
-
-        .search-button {
+        /* Add hover effect for better visibility */
+        .vertical-number:hover {
             background: var(--primary-color);
             color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            transform: scale(1.1);
+            opacity: 1;
         }
 
-        .search-button:hover {
+        /* Add active state for current section */
+        .vertical-number.active {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            opacity: 1;
+        }
+
+        /* Add share button styles */
+        .share-button {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary-color);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .share-button:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .share-options {
+            position: fixed;
+            bottom: 5.5rem;
+            right: 2rem;
+            background: var(--container-bg);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            display: none;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 1001;
+        }
+
+        .share-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .share-option:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Search Styles */
+        .search-container {
+            position: fixed;
+            top: 1rem;
+            right: 5rem;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            background: var(--container-bg);
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: all 0.3s ease;
+            width: 3rem;
+            height: 3rem;
+            overflow: hidden;
+        }
+
+        .search-container.expanded {
+            width: 300px;
+            background: var(--container-bg);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        .search-icon {
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+            background: var(--container-bg);
+            border-radius: 0.75rem;
+        }
+
+        .search-icon:hover {
+            background: var(--primary-color);
+            color: white;
             transform: scale(1.05);
         }
 
+        .search-container.expanded .search-icon {
+            color: var(--text-color);
+            background: transparent;
+        }
+
+        .search-input {
+            padding: 0.75rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--text-color);
+            width: 0;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .search-container.expanded .search-input {
+            width: 250px;
+            opacity: 1;
+        }
+
+        .search-input:focus {
+            outline: none;
+        }
+
+        .search-button {
+            display: none;
+        }
+
+        /* Update mobile styles */
+        @media (max-width: 768px) {
+            .container {
+                margin-left: 0;
+                width: 100%;
+                padding: 1rem;
+                padding-top: 4rem;
+            }
+            
+            .search-container {
+                top: 0.5rem;
+                right: 4rem;
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            
+            .search-container.expanded {
+                width: calc(100% - 5rem);
+            }
+            
+            .search-icon {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            
+            .search-results {
+                top: 4rem;
+                right: 1rem;
+                width: calc(100% - 2rem);
+            }
+        }
+
         .highlight {
-            background-color: yellow;
-            color: black;
+            background-color: var(--primary-color);
+            color: white;
             padding: 2px 4px;
             border-radius: 3px;
         }
 
+        /* Fix search functionality */
         .search-results {
             position: fixed;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 5rem;
+            right: 5rem;
             background: var(--container-bg);
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px var(--shadow-color);
-            width: 80%;
-            max-width: 500px;
-            max-height: 200px;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            width: 300px;
+            max-height: 400px;
             overflow-y: auto;
             display: none;
+            z-index: 1004;
+            transition: all 0.3s ease;
         }
 
         .search-result-item {
-            padding: 8px;
+            padding: 0.75rem;
             cursor: pointer;
             transition: all 0.3s ease;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
         }
 
         .search-result-item:hover {
             background: var(--primary-color);
             color: white;
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 1400px) {
+            .container {
+                margin-left: 250px;
+                padding: 1.75rem;
+                max-width: 1000px;
+            }
+            
+            .content-box {
+                padding: 1.75rem;
+            }
+            
+            h1 {
+                font-size: 2.25rem;
+            }
+            
+            h2 {
+                font-size: 1.65rem;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .container {
+                margin-left: 0;
+                padding: 1.5rem;
+                padding-top: 5rem;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+            
+            .toc-container {
+                width: 250px;
+            }
+            
+            .content-box {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .container {
+                padding: 1.25rem;
+                padding-top: 4.5rem;
+                max-width: 800px;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.35rem;
+            }
+            
+            .content-box {
+                padding: 1.25rem;
+            }
+            
+            .definition-box, .summary-box {
+                padding: 1.25rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin-left: 0;
+                width: 100%;
+                padding: 1rem;
+                padding-top: 4rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 1.25rem;
+            }
+            
+            h2 {
+                font-size: 1.25rem;
+                margin: 1.25rem 0 1rem;
+            }
+            
+            .content-box {
+                padding: 1rem;
+                margin-bottom: 1.25rem;
+            }
+            
+            .definition-box, .summary-box {
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+            
+            .toc-container {
+                width: 85%;
+                max-width: 350px;
+            }
+            
+            .menu-toggle {
+                top: 0.5rem;
+                left: 0.5rem;
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            
+            .share-button {
+                bottom: 1rem;
+                right: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0.75rem;
+                padding-top: 3.5rem;
+            }
+            
+            h1 {
+                font-size: 1.35rem;
+                margin-bottom: 1rem;
+            }
+            
+            h2 {
+                font-size: 1.15rem;
+                margin: 1rem 0 0.75rem;
+            }
+            
+            .content-box {
+                padding: 0.75rem;
+                margin-bottom: 1rem;
+            }
+            
+            .definition-box, .summary-box {
+                padding: 0.75rem;
+                margin: 0.75rem 0;
+            }
+            
+            .search-container {
+                top: 3.5rem;
+                padding: 0.5rem;
+            }
+            
+            .search-input {
+                font-size: 0.9rem;
+            }
+            
+            .fab, .share-button {
+                width: 2.5rem;
+                height: 2.5rem;
+            }
+            
+            .vertical-numbers {
+                right: 5px;
+                padding: 8px;
+                gap: 6px;
+            }
+            
+            .vertical-number {
+                padding: 3px 6px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Add smooth transitions */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, font-size 0.3s ease;
+        }
+
+        /* Improve content readability */
+        .content-box p, .content-box li {
+            font-size: clamp(0.9rem, 1.5vw, 1rem);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-box ul, .content-box ol {
+            margin-bottom: 1rem;
+        }
+
+        /* Add better spacing for lists */
+        li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        li::before {
+            content: '•';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Improve definition and summary boxes */
+        .definition-box, .summary-box {
+            background: var(--container-bg);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin: 1.5rem 0;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+
+        .definition-box:hover, .summary-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        /* Add print styles */
+        @media print {
+            .container {
+                margin-left: 0;
+                padding: 0;
+                max-width: 100%;
+            }
+            
+            .content-box {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid var(--border-color);
+            }
+            
+            .toc-container,
+            .search-container,
+            .share-button,
+            .theme-toggle,
+            .menu-toggle,
+            .overlay,
+            .vertical-numbers,
+            .view-notes-btn {
+                display: none;
+            }
+        }
+
+        /* Add hamburger menu styles */
+        .menu-toggle {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            background: var(--primary-color);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1002;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .menu-toggle i {
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle.active i {
+            transform: rotate(90deg);
+        }
+
+        /* Add overlay for menu */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            display: none;
+            backdrop-filter: blur(2px);
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Add saved notes section styles */
+        .saved-notes-section {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--container-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            z-index: 1004;
+            display: none;
+        }
+
+        .saved-notes-section.active {
+            display: block;
+        }
+
+        .saved-notes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .saved-notes-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 0;
+        }
+
+        .close-saved-notes {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .close-saved-notes:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .saved-notes-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .note-card {
+            background: var(--bg-color);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: all 0.3s ease;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .note-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px var(--shadow-color);
+        }
+
+        .note-title {
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .note-content {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .note-date {
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+
+        .note-actions {
+            display: flex;
+            gap: 0.5rem;
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+        }
+
+        .note-action-btn {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            padding: 0.25rem;
+            transition: all 0.3s ease;
+        }
+
+        .note-action-btn:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        /* Add view notes button */
+        .view-notes-btn {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .view-notes-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        /* Add loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--container-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease;
+        }
+
+        .loading.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--primary-color);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Add reading time indicator */
+        .toc-reading-time {
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: var(--bg-color);
+            border-radius: 0.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        /* Add section counter */
+        .toc-section-counter {
+            position: fixed;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        /* Add scroll to top button */
+        .scroll-to-top {
+            position: fixed;
+            left: 1rem;
+            bottom: 2rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
         }
     </style>
 </head>
@@ -657,8 +1197,11 @@
         <i class="fas fa-plus"></i>
     </div>
 
-    <!-- Add TOC before container -->
+    <!-- TOC -->
     <div class="toc-container">
+        <div class="toc-progress">
+            <div class="toc-progress-bar"></div>
+        </div>
         <div class="toc-title">Table of Contents</div>
         <ul class="toc-list">
             <li class="toc-item"><a href="#q1" class="toc-link">1. Channels of Distribution</a></li>
@@ -671,15 +1214,40 @@
             <li class="toc-item"><a href="#q8" class="toc-link">8. Case Study Analysis</a></li>
             <li class="toc-item"><a href="#q9" class="toc-link">9. Warehousing</a></li>
         </ul>
+        <div class="toc-quick-actions">
+            <button class="quick-action-btn" onclick="toggleTheme()">
+                <i class="fas fa-moon"></i>
+                <span>Toggle Theme</span>
+            </button>
+            <button class="quick-action-btn" onclick="openSavedNotes()">
+                <i class="fas fa-book"></i>
+                <span>View Notes</span>
+            </button>
+            <button class="quick-action-btn" onclick="printPage()">
+                <i class="fas fa-print"></i>
+                <span>Print Notes</span>
+            </button>
+        </div>
+        <div class="toc-reading-time">
+            <i class="fas fa-clock"></i>
+            <span>Estimated reading time: 15 minutes</span>
+        </div>
     </div>
+
+    <div class="toc-section-counter">Section 1 of 9</div>
+    <button class="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <div class="container">
         <h1>Marketing Mix Notes</h1>
 
-        <!-- Add search bar after theme toggle -->
+        <!-- Search Bar -->
         <div class="search-container">
+            <div class="search-icon">
+                <i class="fas fa-search"></i>
+            </div>
             <input type="text" class="search-input" placeholder="Search notes...">
-            <button class="search-button">Search</button>
         </div>
         <div class="search-results"></div>
 
@@ -1247,6 +1815,60 @@
         </div>
     </div>
 
+    <!-- Add vertical numbers -->
+    <div class="vertical-numbers">
+        <a href="#q1" class="vertical-number">1</a>
+        <a href="#q2" class="vertical-number">2</a>
+        <a href="#q3" class="vertical-number">3</a>
+        <a href="#q4" class="vertical-number">4</a>
+        <a href="#q5" class="vertical-number">5</a>
+        <a href="#q6" class="vertical-number">6</a>
+        <a href="#q7" class="vertical-number">7</a>
+        <a href="#q8" class="vertical-number">8</a>
+        <a href="#q9" class="vertical-number">9</a>
+    </div>
+
+    <!-- Add share button and options -->
+    <div class="share-button" onclick="toggleShareOptions()">
+        <i class="fas fa-share-alt"></i>
+    </div>
+
+    <div class="share-options">
+        <div class="share-option" onclick="shareViaWhatsApp()">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </div>
+        <div class="share-option" onclick="shareViaEmail()">
+            <i class="fas fa-envelope"></i>
+            <span>Email</span>
+        </div>
+        <div class="share-option" onclick="copyLink()">
+            <i class="fas fa-link"></i>
+            <span>Copy Link</span>
+        </div>
+    </div>
+
+    <!-- Add this HTML after the body tag -->
+    <div class="overlay" id="savedNotesOverlay"></div>
+    <div class="saved-notes-section" id="savedNotesSection">
+        <div class="saved-notes-header">
+            <h2 class="saved-notes-title">Saved Notes</h2>
+            <button class="close-saved-notes" onclick="closeSavedNotes()">&times;</button>
+        </div>
+        <div class="saved-notes-list" id="savedNotesList"></div>
+    </div>
+    <button class="view-notes-btn" onclick="openSavedNotes()">
+        <i class="fas fa-book"></i>
+        View Notes
+    </button>
+
+    <!-- Add to HTML after body tag -->
+    <div class="overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <!-- Add to JavaScript section -->
     <script>
         // Theme Toggle
         function toggleTheme() {
@@ -1272,8 +1894,25 @@
             const title = event.target[0].value;
             const content = event.target[1].value;
             
-            // Here you would typically save the note to a database
-            console.log('Creating note:', { title, content });
+            // Create note object
+            const note = {
+                id: Date.now(),
+                title: title,
+                content: content,
+                createdAt: new Date().toISOString()
+            };
+            
+            // Get existing notes from localStorage
+            let notes = JSON.parse(localStorage.getItem('marketingMixNotes')) || [];
+            
+            // Add new note
+            notes.push(note);
+            
+            // Save to localStorage
+            localStorage.setItem('marketingMixNotes', JSON.stringify(notes));
+            
+            // Show success message
+            showNotification('Note saved successfully!');
             
             // Close modal and reset form
             closeCreateNoteModal();
@@ -1329,24 +1968,25 @@
             });
         });
 
-        // Add search functionality to script
+        // Search functionality
+        const searchContainer = document.querySelector('.search-container');
+        const searchIcon = document.querySelector('.search-icon');
         const searchInput = document.querySelector('.search-input');
-        const searchButton = document.querySelector('.search-button');
         const searchResults = document.querySelector('.search-results');
         const contentBoxes = document.querySelectorAll('.content-box');
-
+        
         function highlightText(text, searchTerm) {
             if (!searchTerm) return text;
             const regex = new RegExp(`(${searchTerm})`, 'gi');
             return text.replace(regex, '<span class="highlight">$1</span>');
         }
-
+        
         function searchContent(searchTerm) {
             if (!searchTerm) {
-                searchResults.style.display = 'none';
+                searchResults.classList.remove('active');
                 return;
             }
-
+            
             const results = [];
             contentBoxes.forEach(box => {
                 const text = box.textContent.toLowerCase();
@@ -1360,26 +2000,26 @@
                     });
                 }
             });
-
+            
             displayResults(results, searchTerm);
         }
-
+        
         function displayResults(results, searchTerm) {
             if (results.length === 0) {
                 searchResults.innerHTML = '<div class="search-result-item">No results found</div>';
-                searchResults.style.display = 'block';
+                searchResults.classList.add('active');
                 return;
             }
-
+            
             searchResults.innerHTML = results.map(result => `
                 <div class="search-result-item" onclick="scrollToResult('${result.element.id}')">
                     ${highlightText(result.title, searchTerm)}
                 </div>
             `).join('');
-
-            searchResults.style.display = 'block';
+            
+            searchResults.classList.add('active');
         }
-
+        
         function scrollToResult(id) {
             const element = document.getElementById(id);
             if (element) {
@@ -1387,88 +2027,319 @@
                     behavior: 'smooth',
                     block: 'start'
                 });
-                searchResults.style.display = 'none';
+                searchResults.classList.remove('active');
+                searchContainer.classList.remove('expanded');
+            }
+        }
+        
+        searchIcon.addEventListener('click', () => {
+            searchContainer.classList.toggle('expanded');
+            if (searchContainer.classList.contains('expanded')) {
+                searchInput.focus();
+            } else {
+                searchResults.classList.remove('active');
+            }
+        });
+        
+        searchInput.addEventListener('input', (e) => {
+            searchContent(e.target.value);
+        });
+        
+        // Close search when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container') && !e.target.closest('.search-results')) {
+                searchContainer.classList.remove('expanded');
+                searchResults.classList.remove('active');
+            }
+        });
+
+        // Share functionality
+        function toggleShareOptions() {
+            const shareOptions = document.querySelector('.share-options');
+            shareOptions.style.display = shareOptions.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        function shareViaWhatsApp() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent('Check out these Marketing Mix notes!');
+            window.open(`https://wa.me/?text=${text}%20${url}`);
+        }
+
+        function shareViaEmail() {
+            const url = encodeURIComponent(window.location.href);
+            const subject = encodeURIComponent('Marketing Mix Notes');
+            const body = encodeURIComponent('Check out these Marketing Mix notes:\n\n');
+            window.location.href = `mailto:?subject=${subject}&body=${body}${url}`;
+        }
+
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+
+        // Menu functionality
+        function toggleMenu() {
+            const toc = document.querySelector('.toc-container');
+            const overlay = document.getElementById('menuOverlay');
+            const menuToggle = document.querySelector('.menu-toggle');
+            
+            if (toc.classList.contains('active')) {
+                toc.classList.remove('active');
+                overlay.style.display = 'none';
+                menuToggle.classList.remove('active');
+            } else {
+                toc.classList.add('active');
+                overlay.style.display = 'block';
+                menuToggle.classList.add('active');
             }
         }
 
-        searchButton.addEventListener('click', () => {
-            searchContent(searchInput.value);
-        });
-
-        searchInput.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') {
-                searchContent(searchInput.value);
-            }
-        });
-
-        // Close search results when clicking outside
+        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
-            if (!e.target.closest('.search-container') && !e.target.closest('.search-results')) {
-                searchResults.style.display = 'none';
-            }
-        });
-
-        // Add JavaScript for enhanced TOC functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const tocList = document.querySelector('.toc-list');
-            const tocNavLeft = document.querySelector('.toc-nav-left');
-            const tocNavRight = document.querySelector('.toc-nav-right');
-            const tocScrollIndicator = document.querySelector('.toc-scroll-indicator');
-
-            // Add navigation arrows
-            const navLeft = document.createElement('div');
-            navLeft.className = 'toc-nav toc-nav-left';
-            navLeft.innerHTML = '<i class="fas fa-chevron-left"></i>';
-            
-            const navRight = document.createElement('div');
-            navRight.className = 'toc-nav toc-nav-right';
-            navRight.innerHTML = '<i class="fas fa-chevron-right"></i>';
-
-            tocList.parentNode.insertBefore(navLeft, tocList);
-            tocList.parentNode.appendChild(navRight);
-
-            // Add scroll indicator
-            const indicator = document.createElement('div');
-            indicator.className = 'toc-scroll-indicator';
-            tocList.parentNode.appendChild(indicator);
-
-            // Navigation functions
-            navLeft.addEventListener('click', () => {
-                tocList.scrollBy({ left: -100, behavior: 'smooth' });
-            });
-
-            navRight.addEventListener('click', () => {
-                tocList.scrollBy({ left: 100, behavior: 'smooth' });
-            });
-
-            // Update scroll indicator
-            tocList.addEventListener('scroll', () => {
-                const scrollWidth = tocList.scrollWidth - tocList.clientWidth;
-                const scrollLeft = tocList.scrollLeft;
-                const percentage = (scrollLeft / scrollWidth) * 100;
-                indicator.style.width = `${percentage}%`;
-            });
-
-            // Add section indicator
-            const sections = document.querySelectorAll('.section');
-            const sectionIndicator = document.createElement('div');
-            sectionIndicator.className = 'section-indicator';
-            document.body.appendChild(sectionIndicator);
-
-            function updateSectionIndicator() {
-                let currentSection = '';
-                sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= 100) {
-                        currentSection = section.querySelector('h2').textContent;
+            if (window.innerWidth <= 768) {
+                if (!e.target.closest('.toc-container') && !e.target.closest('.menu-toggle')) {
+                    const toc = document.querySelector('.toc-container');
+                    const overlay = document.getElementById('menuOverlay');
+                    const menuToggle = document.querySelector('.menu-toggle');
+                    
+                    if (toc.classList.contains('active')) {
+                        toc.classList.remove('active');
+                        overlay.style.display = 'none';
+                        menuToggle.classList.remove('active');
                     }
-                });
-                sectionIndicator.textContent = currentSection;
+                }
             }
-
-            window.addEventListener('scroll', updateSectionIndicator);
-            updateSectionIndicator();
         });
+
+        // Update active section in TOC
+        function updateActiveSection() {
+            const sections = document.querySelectorAll('.section');
+            const tocLinks = document.querySelectorAll('.toc-link');
+            
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100) {
+                    tocLinks.forEach(link => link.classList.remove('active'));
+                    tocLinks[index].classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveSection);
+        updateActiveSection();
+
+        // Add notification system
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            
+            // Add styles
+            notification.style.position = 'fixed';
+            notification.style.bottom = '2rem';
+            notification.style.left = '50%';
+            notification.style.transform = 'translateX(-50%)';
+            notification.style.backgroundColor = 'var(--success-color)';
+            notification.style.color = 'white';
+            notification.style.padding = '1rem 2rem';
+            notification.style.borderRadius = '0.5rem';
+            notification.style.boxShadow = '0 2px 4px var(--shadow-color)';
+            notification.style.zIndex = '1005';
+            notification.style.animation = 'slideIn 0.3s ease';
+            
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Add keyframe animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translate(-50%, 100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translate(-50%, 0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translate(-50%, 0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translate(-50%, 100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Load saved notes on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const notes = JSON.parse(localStorage.getItem('marketingMixNotes')) || [];
+            console.log('Loaded notes:', notes);
+        });
+
+        // Saved notes functionality
+        function openSavedNotes() {
+            const overlay = document.getElementById('savedNotesOverlay');
+            const savedNotesSection = document.getElementById('savedNotesSection');
+            overlay.classList.add('active');
+            savedNotesSection.classList.add('active');
+            loadSavedNotes();
+        }
+
+        function closeSavedNotes() {
+            const overlay = document.getElementById('savedNotesOverlay');
+            const savedNotesSection = document.getElementById('savedNotesSection');
+            overlay.classList.remove('active');
+            savedNotesSection.classList.remove('active');
+        }
+
+        function loadSavedNotes() {
+            const notes = JSON.parse(localStorage.getItem('marketingMixNotes')) || [];
+            const savedNotesList = document.getElementById('savedNotesList');
+            
+            if (notes.length === 0) {
+                savedNotesList.innerHTML = '<div class="note-card">No saved notes yet</div>';
+                return;
+            }
+            
+            savedNotesList.innerHTML = notes.map(note => `
+                <div class="note-card">
+                    <div class="note-actions">
+                        <button class="note-action-btn" onclick="editNote(${note.id})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="note-action-btn" onclick="deleteNote(${note.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                    <h3 class="note-title">${note.title}</h3>
+                    <p class="note-content">${note.content}</p>
+                    <p class="note-date">Created: ${new Date(note.createdAt).toLocaleString()}</p>
+                </div>
+            `).join('');
+        }
+
+        function deleteNote(id) {
+            if (confirm('Are you sure you want to delete this note?')) {
+                let notes = JSON.parse(localStorage.getItem('marketingMixNotes')) || [];
+                notes = notes.filter(note => note.id !== id);
+                localStorage.setItem('marketingMixNotes', JSON.stringify(notes));
+                loadSavedNotes();
+                showNotification('Note deleted successfully!');
+            }
+        }
+
+        function editNote(id) {
+            const notes = JSON.parse(localStorage.getItem('marketingMixNotes')) || [];
+            const note = notes.find(n => n.id === id);
+            if (note) {
+                const modal = document.getElementById('createNoteModal');
+                const form = modal.querySelector('.note-form');
+                form[0].value = note.title;
+                form[1].value = note.content;
+                modal.style.display = 'block';
+                
+                form.onsubmit = function(e) {
+                    e.preventDefault();
+                    const updatedNote = {
+                        ...note,
+                        title: form[0].value,
+                        content: form[1].value,
+                        updatedAt: new Date().toISOString()
+                    };
+                    const updatedNotes = notes.map(n => n.id === id ? updatedNote : n);
+                    localStorage.setItem('marketingMixNotes', JSON.stringify(updatedNotes));
+                    closeCreateNoteModal();
+                    loadSavedNotes();
+                    showNotification('Note updated successfully!');
+                };
+            }
+        }
+
+        // Close saved notes when clicking overlay
+        document.getElementById('savedNotesOverlay').addEventListener('click', closeSavedNotes);
+
+        // Loading animation
+        window.addEventListener('load', () => {
+            const loading = document.querySelector('.loading');
+            loading.classList.add('hide');
+            setTimeout(() => {
+                loading.style.display = 'none';
+            }, 300);
+        });
+
+        // Update progress bar
+        function updateProgress() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.toc-progress-bar').style.height = scrolled + '%';
+        }
+
+        // Update section counter
+        function updateSectionCounter() {
+            const sections = document.querySelectorAll('.section');
+            let currentSection = 1;
+            
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100) {
+                    currentSection = index + 1;
+                }
+            });
+            
+            document.querySelector('.toc-section-counter').textContent = `Section ${currentSection} of ${sections.length}`;
+        }
+
+        // Show/hide scroll to top button
+        function toggleScrollToTop() {
+            const scrollToTop = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollToTop.classList.add('visible');
+            } else {
+                scrollToTop.classList.remove('visible');
+            }
+        }
+
+        // Scroll to top function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Print function
+        function printPage() {
+            window.print();
+        }
+
+        // Add event listeners
+        window.addEventListener('scroll', () => {
+            updateProgress();
+            updateSectionCounter();
+            toggleScrollToTop();
+        });
+
+        // Initialize
+        updateProgress();
+        updateSectionCounter();
+        toggleScrollToTop();
     </script>
 </body>
 </html> 
